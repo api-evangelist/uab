@@ -1,0 +1,14 @@
+{
+  "repo": "uab",
+  "feeds": [
+    {
+      "source": "https://www.uab.cat/en/news",
+      "feed_url": "https://www.uab.cat/en/news",
+      "title": "UAB News",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-03T00:00:00Z"
+}

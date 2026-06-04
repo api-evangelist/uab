@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "uab": "https://www.uab.cat/ns#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "foundingDate": "schema:foundingDate",
+    "location": "schema:location",
+    "sameAs": "schema:sameAs",
+    "CollegeOrUniversity": "schema:CollegeOrUniversity",
+    "WebAPI": "schema:WebAPI",
+    "documentation": {
+      "@id": "schema:documentation",
+      "@type": "@id"
+    },
+    "endpointURL": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "repository": "uab:repository",
+    "metadataProtocol": "uab:metadataProtocol",
+    "oaiBaseURL": {
+      "@id": "uab:oaiBaseURL",
+      "@type": "@id"
+    }
+  },
+  "@type": "CollegeOrUniversity",
+  "@id": "https://www.uab.cat/",
+  "name": "Autonomous University of Barcelona",
+  "url": "https://www.uab.cat/",
+  "description": "Public research university in Bellaterra, near Barcelona, Spain, founded in 1968.",
+  "foundingDate": "1968",
+  "location": "Bellaterra, Barcelona, Spain",
+  "sameAs": [
+    "https://www.linkedin.com/school/uabbarcelona/",
+    "https://en.wikipedia.org/wiki/Autonomous_University_of_Barcelona"
+  ],
+  "uab:apis": [
+    {
+      "@type": "WebAPI",
+      "name": "DDD Digital Document Repository OAI-PMH",
+      "description": "OAI-PMH 2.0 metadata harvesting endpoint for the Diposit Digital de Documents de la UAB, running on the Invenio platform.",
+      "documentation": "https://www.uab.cat/en/libraries/digital-document-repository",
+      "oaiBaseURL": "https://ddd.uab.cat/oai2d",
+      "metadataProtocol": "OAI-PMH 2.0",
+      "repository": "Invenio"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "CSUC Research Data Repository (CORA RDR)",
+      "description": "Federated Catalan consortium research data repository where UAB publishes FAIR research data sets.",
+      "documentation": "https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html"
+    }
+  ]
+}
