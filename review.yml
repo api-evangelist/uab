@@ -1,0 +1,42 @@
+---
+name: Autonomous University of Barcelona
+description: Autonomous University of Barcelona public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      UAB has no formal, publicly documented developer portal or API program and
+      no confirmed official institutional GitHub organization (the Catalan UAB at
+      uab.cat is distinct from the unrelated US "uab.edu"/uabrc orgs, which were
+      excluded). The strongest verified machine-accessible interface is the DDD
+      institutional repository's OAI-PMH 2.0 endpoint, confirmed live returning a
+      valid Identify response (Invenio-based, OpenAIRE-compliant, admin
+      ddd.bib@uab.cat, earliest datestamp 2006-03-13). Research data is published
+      through the federated CSUC/CORA consortium repository rather than a UAB-only
+      API. Student academic services (SIA) are gated login portals with no public
+      API docs. No endpoints, keys, or specs were fabricated; only confirmed
+      surfaces are cataloged. Note: direct curl probes from this network returned
+      000 for some HTTPS hosts (apparent TLS/bot filtering), but the OAI-PMH
+      endpoint and the main site were verified via independent fetch.
+    endpoints:
+      - url: https://ddd.uab.cat/oai2d?verb=Identify
+        status: 200
+        note: Verified live OAI-PMH 2.0 Identify (Invenio, OpenAIRE-compliant) via fetch; direct curl returned 000 due to network TLS/bot filtering.
+      - url: https://www.uab.cat/
+        status: 200
+        note: Official institution website, resolves.
+      - url: https://www.uab.cat/en/libraries/digital-document-repository
+        status: 200
+        note: DDD documentation page describing Invenio platform and OAI-PMH interoperability.
+      - url: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+        status: 200
+        note: Open research data page; points to federated CSUC/CORA research data repository.
+      - url: https://sia.uab.es/
+        status: 200
+        note: SIA academic services portal; gated login, no public API documentation.
+      - url: https://www.linkedin.com/school/uabbarcelona/
+        status: 200
+        note: Official LinkedIn school page (~229k followers).

@@ -1,0 +1,81 @@
+---
+aid: uab
+name: Autonomous University of Barcelona
+description: >-
+  The Autonomous University of Barcelona (Universitat Autònoma de Barcelona, UAB)
+  is a public research university in Bellaterra, near Barcelona, Spain, founded
+  in 1968 and ranked #175 in the QS World University Rankings 2025. UAB's public,
+  machine-accessible footprint centers on its open scholarly infrastructure rather
+  than a formal developer portal: the Dipòsit Digital de Documents (DDD), the
+  institutional repository built on the Invenio platform, exposes an OAI-PMH 2.0
+  metadata endpoint and is OpenAIRE-compliant. Research data is published through
+  the Catalan consortium (CSUC) federated research data repository. No dedicated,
+  publicly documented UAB developer/API program or official institutional GitHub
+  organization was confirmed; student-facing academic services (SIA) are gated
+  login portals without public API documentation.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Spain
+  - Catalonia
+  - Open Access
+  - Institutional Repository
+  - OAI-PMH
+  - Research Data
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: uab:ddd-oai-pmh
+    name: DDD Digital Document Repository OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for the Dipòsit Digital de
+      Documents de la UAB (DDD), the university's institutional repository of
+      theses, articles, preprints, postprints, ebooks, periodicals, and other
+      scholarly and institutional output. The repository runs on the Invenio
+      platform (originally from CERN) and is certified OpenAIRE-compliant. The
+      endpoint supports standard OAI-PMH verbs (Identify, ListRecords,
+      ListSets, GetRecord) and is harvested by aggregators such as Google
+      Scholar, BASE, and CORE.
+    humanURL: https://www.uab.cat/en/libraries/digital-document-repository
+    baseURL: https://ddd.uab.cat/oai2d
+    tags: [ OAI-PMH, Institutional Repository, Open Access, Metadata, Invenio, Research ]
+    properties:
+      - type: Documentation
+        url: https://www.uab.cat/en/libraries/digital-document-repository
+  - aid: uab:rdr-research-data
+    name: CSUC Research Data Repository (CORA RDR)
+    description: >-
+      UAB research data is published via the Catalan Consortium of University
+      Services (CSUC) federated, multidisciplinary research data repository
+      (CORA Repositori de Dades de Recerca), where Catalan universities and
+      CERCA research centers publish FAIR research data sets following EOSC
+      guidelines. This is a shared/federated consortium platform rather than a
+      UAB-only API; no UAB-specific public API documentation was confirmed.
+    humanURL: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+    tags: [ Research Data, Open Data, FAIR, CSUC, Federated, Consortium ]
+    properties:
+      - type: Documentation
+        url: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+common:
+  - type: Website
+    url: https://www.uab.cat/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/uabbarcelona/
+  - type: Plans
+    url: plans/uab-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/uab-rate-limits.yml
+  - type: FinOps
+    url: finops/uab-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
