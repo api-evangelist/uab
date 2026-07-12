@@ -64,6 +64,8 @@ apis:
       - type: Documentation
         url: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
 common:
+  - type: DomainSecurity
+    url: security/uab-domain-security.yml
   - type: Website
     url: https://www.uab.cat/
   - type: LinkedIn
