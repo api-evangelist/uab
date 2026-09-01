@@ -2,105 +2,521 @@
 aid: uab
 name: Autonomous University of Barcelona
 description: >-
-  The Autonomous University of Barcelona (Universitat Autònoma de Barcelona, UAB)
-  is a public research university in Bellaterra, near Barcelona, Spain, founded
-  in 1968 and ranked #175 in the QS World University Rankings 2025. UAB's public,
-  machine-accessible footprint centers on its open scholarly infrastructure rather
-  than a formal developer portal: the Dipòsit Digital de Documents (DDD), the
-  institutional repository built on the Invenio platform, exposes an OAI-PMH 2.0
-  metadata endpoint and is OpenAIRE-compliant. Research data is published through
-  the Catalan consortium (CSUC) federated research data repository. No dedicated,
-  publicly documented UAB developer/API program or official institutional GitHub
-  organization was confirmed; student-facing academic services (SIA) are gated
-  login portals without public API documentation.
+  The Universitat Autònoma de Barcelona (UAB) is a public research university in
+  Bellaterra, Catalonia, founded in 1968. Unusually for this cohort, its programmable
+  footprint is real and is genuinely its own. UAB runs four OAI-PMH 2.0 endpoints on its
+  own RIPE allocation — the Dipòsit Digital de Documents (ddd.uab.cat, 221,931 records,
+  18 sets, oai_dc / marcxml / edm / oai_openaire), the Traces database of Catalan language
+  and literature, the IFMuC inventory of Catalan music collections, and per-journal
+  endpoints on its self-hosted OJS platform at revistes.uab.cat — and an Invenio search
+  interface that exports MARC21 XML, Dublin Core and BibTeX without a key. It
+  self-publishes a complete SAML 2.0 IdP EntityDescriptor from its own Apereo CAS server at
+  sso.uab.cat, which is the one institution-published machine-readable contract here, and
+  it reaches eduGAIN through the Spanish federation SIR, whose UAB entity is operated on
+  RedIRIS's gateway rather than UAB's. UAB is a Crossref member in its own name (member
+  3612, prefix 10.5565, 23,089 DOIs) and holds ROR 052g8jq94. What it does not have is a
+  developer programme: no OpenAPI is published for anything, api.uab.cat, data.uab.cat and
+  opendata.uab.cat do not resolve, there is no API-key or OAuth path, no institutional
+  GitHub organisation was found, and www.uab.cat has no llms.txt. Research data is a tenant
+  relationship, not a UAB contract: the 567 datasets in UAB's named collection live on the
+  CSUC-operated CORA Repositori de Dades de Recerca and carry CSUC's DataCite prefix.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: false
-  label: Hosted service · you call their endpoint
-  confidence: medium
+  commercial: false
+  callable_host: true
+  label: Institution-operated endpoints · you call their host
+  confidence: high
   source:
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - openapi
+  - examples
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free · open harvesting endpoints, no registration; personal services gated by institutional SSO
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - authentication
+  - examples
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/uab.png
 url: https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Spain
-  - Catalonia
-  - Open Access
-  - Institutional Repository
-  - OAI-PMH
-  - Research Data
+- Education
+- Higher Education
+- University
+- Spain
+- Catalonia
+- Research
+- Open Access
+- Institutional Repository
+- Research Repository
+- Research Data
+- OAI-PMH
+- Identity Federation
+- Scholarly Publishing
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
-  - aid: uab:ddd-oai-pmh
-    name: DDD Digital Document Repository OAI-PMH
-    description: >-
-      OAI-PMH 2.0 metadata harvesting endpoint for the Dipòsit Digital de
-      Documents de la UAB (DDD), the university's institutional repository of
-      theses, articles, preprints, postprints, ebooks, periodicals, and other
-      scholarly and institutional output. The repository runs on the Invenio
-      platform (originally from CERN) and is certified OpenAIRE-compliant. The
-      endpoint supports standard OAI-PMH verbs (Identify, ListRecords,
-      ListSets, GetRecord) and is harvested by aggregators such as Google
-      Scholar, BASE, and CORE.
-    humanURL: https://www.uab.cat/en/libraries/digital-document-repository
-    baseURL: https://ddd.uab.cat/oai2d
-    tags: [ OAI-PMH, Institutional Repository, Open Access, Metadata, Invenio, Research ]
-    properties:
-      - type: Documentation
-        url: https://www.uab.cat/en/libraries/digital-document-repository
-  - aid: uab:rdr-research-data
-    name: CSUC Research Data Repository (CORA RDR)
-    description: >-
-      UAB research data is published via the Catalan Consortium of University
-      Services (CSUC) federated, multidisciplinary research data repository
-      (CORA Repositori de Dades de Recerca), where Catalan universities and
-      CERCA research centers publish FAIR research data sets following EOSC
-      guidelines. This is a shared/federated consortium platform rather than a
-      UAB-only API; no UAB-specific public API documentation was confirmed.
-    humanURL: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
-    tags: [ Research Data, Open Data, FAIR, CSUC, Federated, Consortium ]
-    properties:
-      - type: Documentation
-        url: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+- aid: uab:ddd-oai-pmh
+  name: DDD — Dipòsit Digital de Documents de la UAB (OAI-PMH 2.0)
+  description: >-
+    OAI-PMH 2.0 harvesting endpoint for UAB's institutional repository of theses, articles,
+    preprints, postprints, ebooks, rare books, periodicals, graphic documents and political
+    posters. Identify returns repositoryName "Dipòsit Digital de Documents de la UAB",
+    repositoryIdentifier ddd.uab.cat, adminEmail ddd.bib@uab.cat and an earliest datestamp
+    of 2006-03-13. ListMetadataFormats returns four prefixes — oai_dc, marcxml, edm
+    (Europeana Data Model) and oai_openaire (OpenAIRE Guidelines) — and ListSets returns 18
+    harvestable sets including tesisuab, datasets, artpubuab and uabeuropeana. Identify,
+    ListSets, ListMetadataFormats, ListIdentifiers and GetRecord were all exercised and all
+    returned HTTP 200. The repository declares CC0 1.0 on its metadata records. The
+    software is Invenio; the deployment, the hosts and the records are UAB's.
+  humanURL: https://www.uab.cat/en/libraries/digital-document-repository
+  baseURL: https://ddd.uab.cat/oai2d
+  tags:
+  - OAI-PMH
+  - Institutional Repository
+  - Open Access
+  - Metadata
+  - Invenio
+  - OpenAIRE
+  properties:
+  - type: OpenAPI
+    url: openapi/uab-ddd-openapi.yml
+  - type: Documentation
+    url: https://www.uab.cat/en/libraries/digital-document-repository
+  - type: ResearchRepository
+    url: https://ddd.uab.cat/
+  - type: Examples
+    url: examples/uab-examples.yml
+  - type: Conformance
+    url: conformance/uab-conformance.yml
+  x-operator: institution
+  x-operator-basis: >-
+    ddd.uab.cat is a CNAME to mompou.uab.cat and resolves to 158.109.2.47. RIPE whois for
+    that block returns netname XIUAB, descr "Xarxa Informatica de la Universitat Autonoma
+    de Barcelona (UAB)", country ES. No CNAME onto a vendor platform. The service
+    self-reports repositoryIdentifier ddd.uab.cat and a uab.cat admin address.
+
+- aid: uab:ddd-search
+  name: DDD Invenio Search and Export Interface
+  description: >-
+    The repository's search endpoint returns machine-readable records when given an output
+    format: of=xm yields MARC21 XML in the loc.gov/MARC21/slim namespace, of=xd yields
+    Dublin Core XML, of=hx yields BibTeX. Responses carry a
+    Search-Engine-Total-Number-Of-Results comment; an unrestricted query reported 221,931
+    records on 2026-09-01. Anonymous, no key, no registration. This is the practical export
+    route for selections that do not map onto an OAI-PMH set, and it is described in the
+    same derived contract as the OAI-PMH interface because it runs on the same UAB host.
+  humanURL: https://ddd.uab.cat/
+  baseURL: https://ddd.uab.cat/search
+  tags:
+  - Search
+  - Metadata
+  - MARC21
+  - Dublin Core
+  - Invenio
+  properties:
+  - type: OpenAPI
+    url: openapi/uab-ddd-openapi.yml
+  - type: Examples
+    url: examples/uab-ddd-search-dublin-core.xml
+  x-operator: institution
+  x-operator-basis: Same host and same UAB address space as the OAI-PMH interface (158.109.2.47, XIUAB).
+
+- aid: uab:traces-oai-pmh
+  name: Traces — Base de Dades de Llengua i Literatura Catalanes (OAI-PMH 2.0)
+  description: >-
+    A second institution-operated OAI-PMH 2.0 endpoint, for Traces, UAB's bibliographic
+    database of Catalan language and literature. Identify returns repositoryName "Traces :
+    base de dades de llengua i literatura catalanes" and adminEmail p.traces@uab.cat. DDD's
+    own Identify response declares this endpoint as an OAI-PMH "friend", which is how it
+    was found — a link no hostname sweep would have produced.
+  humanURL: https://traces.uab.cat/
+  baseURL: https://traces.uab.cat/oai2d
+  tags:
+  - OAI-PMH
+  - Bibliographic Database
+  - Catalan
+  - Metadata
+  - Invenio
+  properties:
+  - type: Documentation
+    url: https://traces.uab.cat/
+  - type: Conformance
+    url: conformance/uab-conformance.yml
+  x-operator: institution
+  x-operator-basis: >-
+    traces.uab.cat is a CNAME to mompou.uab.cat, the same UAB host as DDD, resolving to
+    158.109.2.47 in XIUAB. Admin contact is a uab.cat address.
+
+- aid: uab:ifmuc-oai-pmh
+  name: IFMuC — Inventari dels Fons Musicals de Catalunya (OAI-PMH 2.0)
+  description: >-
+    A third institution-operated OAI-PMH 2.0 endpoint, for the Inventory of Music
+    Collections of Catalonia, a UAB-hosted national musical-heritage catalogue. Identify
+    returns repositoryName "IFMuC: Inventari dels Fons Musicals de Catalunya" and
+    adminEmail p.ifmuc@uab.cat. Also declared as a DDD OAI-PMH friend.
+  humanURL: https://ifmuc.uab.cat/
+  baseURL: https://ifmuc.uab.cat/oai2d
+  tags:
+  - OAI-PMH
+  - Cultural Heritage
+  - Music
+  - Metadata
+  - Invenio
+  properties:
+  - type: Documentation
+    url: https://ifmuc.uab.cat/
+  - type: Conformance
+    url: conformance/uab-conformance.yml
+  x-operator: institution
+  x-operator-basis: >-
+    ifmuc.uab.cat is a CNAME to mompou.uab.cat, resolving to 158.109.2.47 in XIUAB, with a
+    uab.cat admin contact.
+
+- aid: uab:revistes-ojs-oai
+  name: Revistes UAB — Open Journal Systems (per-journal OAI-PMH 2.0)
+  description: >-
+    UAB self-hosts the journal platform on which its scholarly journals are published, and
+    each journal exposes its own OAI-PMH 2.0 endpoint. Catalan Journal of Linguistics, for
+    example, answers Identify at https://revistes.uab.cat/catJL/oai with adminEmail
+    revista.catjl@uab.cat and an earliest datestamp of 2017-10-25. The platform software is
+    PKP Open Journal Systems, so the REST contract at /api/v1/ is PKP's and is deliberately
+    NOT saved under this institution — only the deployment, which is UAB's, is recorded.
+  humanURL: https://revistes.uab.cat/
+  baseURL: https://revistes.uab.cat/
+  tags:
+  - OAI-PMH
+  - Scholarly Publishing
+  - Open Journal Systems
+  - Open Access
+  properties:
+  - type: Documentation
+    url: https://revistes.uab.cat/
+  x-operator: institution
+  x-operator-basis: >-
+    revistes.uab.cat resolves to 158.109.174.224, inside UAB's own XIUAB allocation, with
+    no CNAME onto PKP or any hosting vendor, and per-journal admin addresses at uab.cat.
+    UAB runs the instance. The generic OJS API contract belongs to PKP and is not
+    attributed here — this is the shared-contract case the university pipeline names.
+
+- aid: uab:sso-saml-idp
+  name: UAB Single Sign-On — SAML 2.0 Identity Provider
+  description: >-
+    UAB self-publishes a complete SAML 2.0 IdP EntityDescriptor at
+    https://sso.uab.cat/cas/idp/metadata (HTTP 200, text/xml), entityID
+    https://sso.uab.cat/cas/idp, shibmd:Scope sso.uab.cat. It declares separate signing and
+    encryption key descriptors and four SSO bindings — HTTP-POST, HTTP-POST-SimpleSign,
+    HTTP-Redirect and SOAP (ECP) — plus HTTP-POST and HTTP-Redirect single logout. This is
+    the single most complete machine-readable contract in this profile and, unlike the
+    equivalent surface at most institutions in this cohort, it is served from the
+    institution's own infrastructure rather than a managed identity vendor's.
+  humanURL: https://sso.uab.cat/
+  baseURL: https://sso.uab.cat/cas/idp/metadata
+  tags:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - Single Sign-On
+  - Apereo CAS
+  properties:
+  - type: IdentityFederation
+    url: https://sso.uab.cat/cas/idp/metadata
+  - type: Metadata
+    url: identity-federation/uab-sso-cas-saml2-idp-metadata.xml
+  - type: Authentication
+    url: authentication/uab-authentication.yml
+  - type: Conformance
+    url: conformance/uab-conformance.yml
+  x-operator: institution
+  x-operator-basis: >-
+    sso.uab.cat resolves to 158.109.121.62, RIPE netname XIUAB — UAB's own address space,
+    no CNAME. Server header Apache/2.4.37 (Red Hat Enterprise Linux) with
+    X-Application-Context cas-1, i.e. an Apereo CAS instance UAB operates itself. Compare
+    Monash, whose Monash-branded IdP terminates on Amazon address space behind AAF's
+    managed Rapid IdP; UAB's does not.
+
+- aid: uab:sso-cas
+  name: UAB Central Authentication Service (CAS 3.0)
+  description: >-
+    The CAS protocol face of the same server. https://sso.uab.cat/ redirects to /cas/login
+    and the ticket-validation endpoint at /cas/p3/serviceValidate returns a well-formed
+    cas:serviceResponse — an INVALID_TICKET authenticationFailure for a deliberately bad
+    ticket, which evidences a live protocol endpoint and grants nothing. It is the
+    authentication boundary for UAB's own applications, including the virtual campus at
+    cv.uab.cat. Service registration is administrative; there is no self-service developer
+    path and no published contract.
+  humanURL: https://sso.uab.cat/cas/login
+  baseURL: https://sso.uab.cat/cas/
+  tags:
+  - Single Sign-On
+  - Apereo CAS
+  - Authentication
+  properties:
+  - type: Authentication
+    url: authentication/uab-authentication.yml
+  x-operator: institution
+  x-operator-basis: 158.109.121.62, RIPE netname XIUAB — UAB's own address space, no CNAME.
+
+- aid: uab:sir-federation-entity
+  name: UAB in SIR / eduGAIN (RedIRIS federation entity)
+  description: >-
+    UAB's entry in the Spanish national identity federation SIR, operated by RedIRIS, which
+    is how UAB reaches eduGAIN. The EntityDescriptor at entityID
+    https://www.rediris.es/sir/uabidp carries OrganizationName "Universitat Autònoma de
+    Barcelona" and shibmd:Scope uab.es, and is present in the SIR aggregate at
+    https://www.rediris.es/sir/shib1metadata.xml (HTTP 200, 336 entities) and in the eduGAIN
+    entity listing as id 680530. Its SSO, SLO and attribute-authority endpoints are all
+    per-institution paths on sir.rediris.es, so this entity is federation-operated: UAB's
+    identity, RedIRIS's engineering. Recorded, never deleted — a federation is shared by
+    definition, and this is one of the strongest institution-linked surfaces a university has.
+  humanURL: https://www.rediris.es/sir/
+  baseURL: https://www.rediris.es/sir/shib1metadata.xml
+  tags:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - eduGAIN
+  - RedIRIS
+  properties:
+  - type: IdentityFederation
+    url: identity-federation/uab-identity-federation.yml
+  - type: Metadata
+    url: identity-federation/uab-sir-federation-entity.xml
+  x-operator: federation
+  x-operator-basis: >-
+    sir.rediris.es resolves to 130.206.13.20, RIPE netname REDIRIS, "Spanish National R&D
+    Network". Registration authority http://www.rediris.es/, technical contact
+    sir@rediris.es. The organisation and the scope are UAB's; the infrastructure is
+    RedIRIS's.
+
+- aid: uab:cora-rdr
+  name: CORA Repositori de Dades de Recerca — UAB collection (CSUC tenant)
+  description: >-
+    UAB's research data lives in a named collection on CORA RDR, the Dataverse instance
+    operated by the Consorci de Serveis Universitaris de Catalunya. The collection API at
+    https://dataverse.csuc.cat/api/dataverses/UAB returns alias UAB, name "Universitat
+    Autònoma de Barcelona", affiliation UAB and contact ddd.bib@uab.cat, and a subtree
+    search returns 567 datasets. Their DOIs carry prefix 10.34810, minted under the DataCite
+    client gdcc.csuc. The collection, the datasets and the curation are UAB's; the platform,
+    the API contract and the DOI registration are CSUC's. Dataverse's generic specification
+    is deliberately not saved under this institution — recording the relationship is the
+    point, and deleting it to avoid a misattribution would destroy a real institutional fact.
+  humanURL: https://dataverse.csuc.cat/dataverse/UAB
+  baseURL: https://dataverse.csuc.cat/api/dataverses/UAB
+  tags:
+  - Research Data
+  - Dataverse
+  - FAIR
+  - CSUC
+  - Consortium
+  properties:
+  - type: ResearchRepository
+    url: https://dataverse.csuc.cat/dataverse/UAB
+  - type: Documentation
+    url: https://www.uab.cat/ca/ciencia-oberta/dades-de-recerca-obert
+  - type: Examples
+    url: examples/uab-cora-rdr-dataverse.json
+  x-operator: tenant
+  x-operator-basis: >-
+    dataverse.csuc.cat resolves to 84.88.27.173, RIPE netname CESCANET, descr "CSUC
+    Services" / "Anella Cientifica" — consortium infrastructure, not UAB's. A named,
+    institution-specific collection on a platform UAB does not run.
+
+- aid: uab:crossref-member
+  name: Crossref membership (member 3612, prefix 10.5565)
+  description: >-
+    UAB is a Crossref member in its own name. https://api.crossref.org/members/3612 returns
+    primary-name "Universitat Autonoma de Barcelona", location "Bellaterra (Cerdanyola del
+    Valles), Spain", prefixes ["10.5565"] and counts.total-dois 23089. This is a registry
+    membership — a fact about the institution — and Crossref's own API contract is
+    deliberately not saved here.
+  humanURL: https://www.crossref.org/
+  baseURL: https://api.crossref.org/members/3612
+  tags:
+  - Crossref
+  - DOI
+  - Registry
+  - Scholarly Publishing
+  properties:
+  - type: Examples
+    url: examples/uab-crossref-member-3612.json
+  - type: Conformance
+    url: conformance/uab-conformance.yml
+  x-operator: registry
+  x-operator-basis: >-
+    api.crossref.org is a shared identifier registry. UAB is registered in it under its own
+    member id with its own DOI prefix, so the membership is recorded and the registry's
+    contract is not.
+
+- aid: uab:ror
+  name: ROR registration (052g8jq94)
+  description: >-
+    UAB's entry in the Research Organization Registry, https://ror.org/052g8jq94, which
+    resolves the institution's canonical name, its website https://www.uab.cat and its
+    cross-registry identifiers — Funder Registry 501100011104, GRID grid.7080.f, ISNI
+    0000 0001 2296 0625, Wikidata Q43452. It is the identifier that lets an agent join this
+    profile to affiliation strings in DataCite, Crossref and OpenAIRE metadata.
+  humanURL: https://ror.org/052g8jq94
+  baseURL: https://api.ror.org/organizations/052g8jq94
+  tags:
+  - ROR
+  - Registry
+  - Persistent Identifier
+  x-operator: registry
+  x-operator-basis: >-
+    api.ror.org is a shared identifier registry every research organisation is registered
+    in. The registration is UAB's; the contract is ROR's and is not saved here.
 common:
-  - type: DomainSecurity
-    url: security/uab-domain-security.yml
-  - type: Website
-    url: https://www.uab.cat/
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/uabbarcelona/
-  - type: Plans
-    url: plans/uab-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/uab-rate-limits.yml
-  - type: FinOps
-    url: finops/uab-finops.yml
-  - type: Review
-    url: review.yml
+- type: Website
+  url: https://www.uab.cat/
+- type: Documentation
+  url: https://www.uab.cat/en/libraries/digital-document-repository
+- type: OpenAPI
+  url: openapi/uab-ddd-openapi.yml
+- type: Examples
+  url: examples/uab-examples.yml
+- type: Authentication
+  url: authentication/uab-authentication.yml
+- type: Conformance
+  url: conformance/uab-conformance.yml
+- type: IdentityFederation
+  url: identity-federation/uab-identity-federation.yml
+- type: ResearchRepository
+  url: https://ddd.uab.cat/
+- type: OpenData
+  url: https://www.uab.cat/ca/ciencia-oberta/dades-de-recerca-obert
+- type: AIPolicy
+  url: https://www.uab.cat/ca/etica-recerca/artificial
+- type: TermsOfService
+  url: https://www.uab.cat/web/about-the-uab/itineraries/legal-notice-1345668684716.html
+- type: PrivacyPolicy
+  url: https://www.uab.cat/web/la-uab/itineraris/proteccio-de-dades-1345668257177.html
+- type: JSONLD
+  url: json-ld/uab-context.jsonld
+- type: LinkedIn
+  url: https://www.linkedin.com/school/uabbarcelona/
+- type: DomainSecurity
+  url: security/uab-domain-security.yml
+- type: Plans
+  url: plans/uab-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/uab-rate-limits.yml
+- type: FinOps
+  url: finops/uab-finops.yml
+- type: Review
+  url: review.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-type: university
+x-category: Public Research University
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Eight institution-operated surfaces were confirmed live and confirmed UAB-owned by IP,
+    not by hostname: ddd, traces and ifmuc all CNAME to mompou.uab.cat at 158.109.2.47,
+    revistes at 158.109.174.224 and sso at 158.109.121.62, every one of them inside
+    158.109.0.0/16 — RIPE netname XIUAB, "Xarxa Informatica de la Universitat Autonoma de
+    Barcelona". Four OAI-PMH 2.0 endpoints answered real verbs, an Invenio search interface
+    exported MARC21 and Dublin Core without a key, and UAB self-published a full SAML 2.0
+    IdP EntityDescriptor from its own CAS server. Evidenced education-regime conformance:
+    oai-pmh, saml, shibboleth and crossref as institution-operated, datacite as tenant.
+
+    No specification is published by UAB for any of it. The OpenAPI in openapi/ is DERIVED
+    by API Evangelist from live probes and is marked method: derived throughout — it must
+    not be read as a UAB contract. There is no developer programme of any kind: no API
+    keys, no OAuth authorization server (CAS's OIDC module returns 404 on both discovery
+    paths and on /cas/oidc/jwks), no registration, no institutional GitHub organisation,
+    and no llms.txt. api.uab.cat, data.uab.cat, opendata.uab.cat, dades.uab.cat,
+    idp.uab.cat and cataleg.uab.cat do not resolve at all.
+
+    Three surfaces are real institutional facts on infrastructure UAB does not run and are
+    recorded as such rather than deleted: the CORA research-data collection on CSUC's
+    Dataverse (84.88.27.173, CESCANET / CSUC Services), the SIR federation entity whose
+    endpoints all terminate on sir.rediris.es (130.206.13.20, REDIRIS), and the Crossref
+    and ROR registrations. The OJS journal platform is the shared-contract case: UAB runs
+    the instance on its own hardware, so the deployment is recorded as institution, while
+    PKP's generic REST contract is not saved here.
+
+    Two corrections to the June 2026 profile. The CORA entry's only pointer,
+    www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html, returns
+    HTTP 200 with a body byte-identical to UAB's 404 page — a soft-404 that had been
+    reading as a live claim; it is removed and replaced with the verified Catalan open
+    science page. And the profile previously asserted that UAB had no confirmed
+    institutional identity surface; it has two, one of which it publishes itself.
+
+    Searching in Catalan was load-bearing. The AI policy exists only as
+    uab.cat/ca/etica-recerca/artificial, where UAB's research ethics committee subscribes
+    to the EU ALTAI trustworthy-AI self-assessment; the Traces and IFMuC repositories were
+    found only through DDD's own OAI-PMH friends declaration; and UAB's eduGAIN entity is
+    findable only by its RedIRIS-namespaced entityID and its Catalan display name, since
+    every "uab" host in eduGAIN belongs to Alabama-Birmingham or Universidade Aberta.
+  assessed: '2026-09-01'
+  method: probed
+  evidence:
+  - url: https://ddd.uab.cat/oai2d?verb=Identify
+    status: 200
+  - url: https://ddd.uab.cat/oai2d?verb=ListMetadataFormats
+    status: 200
+  - url: https://ddd.uab.cat/oai2d?verb=ListSets
+    status: 200
+  - url: 'https://ddd.uab.cat/oai2d?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:ddd.uab.cat:335819'
+    status: 200
+  - url: https://ddd.uab.cat/search?p=barcelona&of=xd
+    status: 200
+  - url: https://traces.uab.cat/oai2d?verb=Identify
+    status: 200
+  - url: https://ifmuc.uab.cat/oai2d?verb=Identify
+    status: 200
+  - url: https://revistes.uab.cat/catJL/oai?verb=Identify
+    status: 200
+  - url: https://sso.uab.cat/cas/idp/metadata
+    status: 200
+  - url: https://www.rediris.es/sir/shib1metadata.xml
+    status: 200
+  - url: https://api.crossref.org/members/3612
+    status: 200
+  - url: https://api.ror.org/organizations?query=Universitat+Autonoma+de+Barcelona
+    status: 200
+  - url: https://dataverse.csuc.cat/api/dataverses/UAB
+    status: 200
+  - url: https://www.uab.cat/
+    status: 200
+  - url: https://www.uab.cat/ca/etica-recerca/artificial
+    status: 200
+  - url: https://www.uab.cat/ca/ciencia-oberta/dades-de-recerca-obert
+    status: 200
+  - url: 'https://sso.uab.cat/cas/p3/serviceValidate?service=https://example.org&ticket=ST-invalid'
+    status: 403
+  - url: https://www.uab.cat/guiesdocents/
+    status: 403
+  - url: https://www.uab.cat/llms.txt
+    status: 404
+  - url: https://sso.uab.cat/cas/oidc/.well-known/openid-configuration
+    status: 404
+  - url: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+    status: 200
+    note: soft-404 — body byte-identical to the site 404 page; pointer removed
+  - url: https://api.uab.cat/
+    status: 0
+  - url: https://data.uab.cat/
+    status: 0
+  - url: https://opendata.uab.cat/
+    status: 0
+  - url: https://idp.uab.cat/idp/shibboleth
+    status: 0
+  - url: https://cataleg.uab.cat/
+    status: 0
