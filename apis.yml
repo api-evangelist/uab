@@ -46,7 +46,7 @@ accessModel:
   - examples
   generated: '2026-09-01'
   method: probed
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/uab.png
 url: https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/apis.yml
