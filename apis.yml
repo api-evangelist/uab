@@ -146,6 +146,12 @@ apis:
   - Identity Federation
   - SAML
   - Shibboleth
+  - SSO
+  - Apereo CAS
+  tags_raw:
+  - Identity Federation
+  - SAML
+  - Shibboleth
   - Single Sign-On
   - Apereo CAS
   properties:
@@ -173,6 +179,10 @@ apis:
   humanURL: https://sso.uab.cat/cas/login
   baseURL: https://sso.uab.cat/cas/
   tags:
+  - SSO
+  - Apereo CAS
+  - Authentication
+  tags_raw:
   - Single Sign-On
   - Apereo CAS
   - Authentication
