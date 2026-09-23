@@ -1,0 +1,73 @@
+specification: API Evangelist Examples
+specificationVersion: '0.1'
+provider: Autonomous University of Barcelona
+providerId: uab
+generated: '2026-09-01'
+method: probed
+source: >-
+  Every file in this directory is a verbatim, unedited response captured on 2026-09-01 by
+  calling the live endpoint named in its `source` field. Nothing here is synthesised.
+description: >-
+  Captured responses from the surfaces this profile grades. They exist so a reader can
+  check the operator attribution without re-running the probes: the OAI-PMH responses carry
+  UAB's own repository identifier and admin address, the SAML metadata is served from UAB's
+  own CAS host, and the two JSON files show the difference between a registry membership
+  UAB holds in its own name (Crossref member 3612) and a consortium platform UAB is a
+  tenant on (the CORA RDR Dataverse collection, contact ddd.bib@uab.cat, on CSUC hardware).
+examples:
+- file: uab-ddd-oai-identify.xml
+  source: https://ddd.uab.cat/oai2d?verb=Identify
+  status: 200
+  method: probed
+  x-operator: institution
+  note: OAI-PMH 2.0 Identify for the Dipòsit Digital de Documents de la UAB.
+- file: uab-ddd-oai-listmetadataformats.xml
+  source: https://ddd.uab.cat/oai2d?verb=ListMetadataFormats
+  status: 200
+  method: probed
+  x-operator: institution
+  note: Four metadata prefixes — oai_dc, marcxml, edm, oai_openaire.
+- file: uab-ddd-oai-listsets.xml
+  source: https://ddd.uab.cat/oai2d?verb=ListSets
+  status: 200
+  method: probed
+  x-operator: institution
+  note: Eighteen harvestable sets, including tesisuab, datasets, artpubuab and uabeuropeana.
+- file: uab-ddd-oai-getrecord.xml
+  source: 'https://ddd.uab.cat/oai2d?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:ddd.uab.cat:335819'
+  status: 200
+  method: probed
+  x-operator: institution
+  note: 'A single Dublin Core record, showing the oai:ddd.uab.cat: identifier scheme in use.'
+- file: uab-ddd-search-dublin-core.xml
+  source: https://ddd.uab.cat/search?p=barcelona&of=xd&rg=2
+  status: 200
+  method: probed
+  x-operator: institution
+  note: >-
+    Invenio search export in Dublin Core XML. The response header comment
+    Search-Engine-Total-Number-Of-Results reports 221,931 matching records.
+- file: uab-sso-saml2-idp-metadata.xml
+  source: https://sso.uab.cat/cas/idp/metadata
+  status: 200
+  method: probed
+  x-operator: institution
+  note: >-
+    UAB's self-published SAML 2.0 IdP EntityDescriptor, entityID https://sso.uab.cat/cas/idp.
+    The one institution-published machine-readable contract in this profile.
+- file: uab-crossref-member-3612.json
+  source: https://api.crossref.org/members/3612
+  status: 200
+  method: probed
+  x-operator: registry
+  note: >-
+    Crossref membership in UAB's own name, prefix 10.5565, 23,089 deposited DOIs. Recorded
+    as a membership; Crossref's own API contract is not saved under this institution.
+- file: uab-cora-rdr-dataverse.json
+  source: https://dataverse.csuc.cat/api/dataverses/UAB
+  status: 200
+  method: probed
+  x-operator: tenant
+  note: >-
+    UAB's named collection on the CSUC-operated CORA Repositori de Dades de Recerca. Proof
+    of the tenancy, captured deliberately instead of saving Dataverse's generic OpenAPI.

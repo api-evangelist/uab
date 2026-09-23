@@ -1,0 +1,279 @@
+# x-archived-from: uab-ddd-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.1.0
+info:
+  title: UAB Dipòsit Digital de Documents (DDD) — Harvesting and Export Interface
+  version: '1.0.0'
+  summary: >-
+    Anonymous, machine-readable harvesting and metadata-export interface for the Dipòsit
+    Digital de Documents de la UAB, the institutional repository of the Universitat
+    Autònoma de Barcelona.
+  description: >-
+    THIS CONTRACT IS DERIVED, NOT PUBLISHED BY UAB. The Universitat Autònoma de Barcelona
+    publishes no OpenAPI for this interface. This document was written by API Evangelist on
+    2026-09-01 from live probes of https://ddd.uab.cat — every operation, parameter,
+    response media type and enumerated value below was exercised against the running
+    service, and the captured responses are stored beside it in examples/. Nothing here is
+    inferred from vendor documentation or from another institution's contract.
+
+    What it describes is genuinely UAB's. ddd.uab.cat is a CNAME to mompou.uab.cat and
+    resolves to 158.109.2.47, inside 158.109.0.0/16 — RIPE netname XIUAB, "Xarxa Informatica
+    de la Universitat Autonoma de Barcelona (UAB)". The OAI-PMH Identify response names the
+    repository "Dipòsit Digital de Documents de la UAB", declares repositoryIdentifier
+    ddd.uab.cat, and gives adminEmail ddd.bib@uab.cat. The repository software is Invenio,
+    originally from CERN, but the deployment, the hosts, the 18 sets and the 221,931 records
+    are the institution's.
+
+    Two sibling repositories run the same interface on the same UAB infrastructure and are
+    declared as OAI-PMH "friends" by DDD itself: traces.uab.cat (Traces, a Catalan language
+    and literature database) and ifmuc.uab.cat (IFMuC, the Inventory of Music Collections of
+    Catalonia). Both are listed as additional servers below.
+  contact:
+    name: Servei de Biblioteques de la UAB — Dipòsit Digital de Documents
+    email: ddd.bib@uab.cat
+    url: https://www.uab.cat/en/libraries/digital-document-repository
+  license:
+    name: CC0 1.0 Universal (metadata records)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.uab.cat/web/about-the-uab/itineraries/legal-notice-1345668684716.html
+  x-operator: institution
+  x-operator-basis: >-
+    Host under the institution's own registrable domain AND inside the institution's own
+    RIPE allocation (158.109.2.47, netname XIUAB). Confirmed by the service's own Identify
+    response, which self-reports repositoryIdentifier ddd.uab.cat and a uab.cat admin
+    address. No CNAME onto any vendor platform.
+  x-provenance:
+    method: derived
+    generated: '2026-09-01'
+    derived_from: probed
+    source:
+    - https://ddd.uab.cat/oai2d?verb=Identify
+    - https://ddd.uab.cat/oai2d?verb=ListMetadataFormats
+    - https://ddd.uab.cat/oai2d?verb=ListSets
+    - 'https://ddd.uab.cat/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=coldb'
+    - 'https://ddd.uab.cat/oai2d?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:ddd.uab.cat:335819'
+    - https://ddd.uab.cat/search?p=barcelona&of=xm
+    - https://ddd.uab.cat/search?p=barcelona&of=xd
+    examples: examples/uab-examples.yml
+    note: >-
+      Written by API Evangelist from observed behaviour. It must not be read as a
+      UAB-published specification, and it must not be credited to UAB as though the
+      institution authored it.
+servers:
+- url: https://ddd.uab.cat
+  description: Dipòsit Digital de Documents de la UAB — the main institutional repository
+- url: https://traces.uab.cat
+  description: Traces — base de dades de llengua i literatura catalanes (same interface, UAB-operated)
+- url: https://ifmuc.uab.cat
+  description: IFMuC — Inventari dels Fons Musicals de Catalunya (same interface, UAB-operated)
+tags:
+- name: OAI-PMH
+  description: >-
+    Open Archives Initiative Protocol for Metadata Harvesting 2.0. The repository is
+    OpenAIRE-compliant and is harvested by Google Scholar, BASE and CORE.
+  externalDocs:
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+    description: OAI-PMH 2.0 specification
+- name: Search
+  description: >-
+    Invenio search with machine-readable output formats, used for record export outside
+    the OAI-PMH flow.
+paths:
+  /oai2d:
+    get:
+      tags:
+      - OAI-PMH
+      operationId: oaiRequest
+      summary: Issue an OAI-PMH 2.0 request
+      description: >-
+        Single OAI-PMH 2.0 endpoint. The `verb` parameter selects the operation; the other
+        parameters are the ones each verb accepts under the OAI-PMH specification. All six
+        verbs were exercised against the live service. Responses are XML in the
+        http://www.openarchives.org/OAI/2.0/ namespace and carry an xml-stylesheet
+        processing instruction pointing at https://ddd.uab.cat/css/oai2.xsl.v1.0 for
+        browser rendering. Protocol-level failures are reported as HTTP 200 with an
+        <error> element carrying an OAI-PMH error code, not as an HTTP error status.
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: The OAI-PMH operation to perform.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: >-
+          Metadata format for ListIdentifiers, ListRecords and GetRecord. The four values
+          enumerated here are exactly those returned by ListMetadataFormats on 2026-09-01.
+        schema:
+          type: string
+          enum:
+          - oai_dc
+          - marcxml
+          - edm
+          - oai_openaire
+      - name: identifier
+        in: query
+        required: false
+        description: >-
+          OAI identifier of a single record, for GetRecord. Scheme `oai`, repository
+          identifier `ddd.uab.cat`, delimiter `:` — for example oai:ddd.uab.cat:335819.
+        schema:
+          type: string
+          pattern: '^oai:[a-z0-9.-]+:[0-9]+$'
+        example: 'oai:ddd.uab.cat:335819'
+      - name: set
+        in: query
+        required: false
+        description: >-
+          Restrict a listing to one harvestable set. Eighteen sets were returned by
+          ListSets on 2026-09-01; the enumeration below is that full list.
+        schema:
+          type: string
+          enum:
+          - tesisuab
+          - uabeuropeana
+          - fanzins
+          - datasets
+          - scholar
+          - worpapuab
+          - artpubuabnoredi
+          - primocentral
+          - raac
+          - driver
+          - estudisuab
+          - trerecprouab
+          - materials_docents
+          - prepubuab
+          - plagesdad
+          - poncomuab
+          - artpubuab
+          - revuab
+      - name: from
+        in: query
+        required: false
+        description: >-
+          Lower bound on record datestamp. Granularity YYYY-MM-DDThh:mm:ssZ, as declared by
+          Identify. The repository's earliest datestamp is 2006-03-13T16:18:25Z.
+        schema:
+          type: string
+          format: date-time
+      - name: until
+        in: query
+        required: false
+        description: Upper bound on record datestamp, same granularity as `from`.
+        schema:
+          type: string
+          format: date-time
+      - name: resumptionToken
+        in: query
+        required: false
+        description: >-
+          Continuation token returned by a previous incomplete list response. Exclusive of
+          all other arguments except `verb`.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: >-
+            An OAI-PMH response document. Also the status used for protocol-level errors,
+            which appear as an <error> element with an OAI-PMH error code such as
+            badVerb, badArgument, cannotDisseminateFormat, idDoesNotExist or noRecordsMatch.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                identify:
+                  summary: Identify — repository description
+                  externalValue: examples/uab-ddd-oai-identify.xml
+                listMetadataFormats:
+                  summary: ListMetadataFormats — the four supported prefixes
+                  externalValue: examples/uab-ddd-oai-listmetadataformats.xml
+                listSets:
+                  summary: ListSets — the eighteen harvestable sets
+                  externalValue: examples/uab-ddd-oai-listsets.xml
+                getRecord:
+                  summary: GetRecord — one record in Dublin Core
+                  externalValue: examples/uab-ddd-oai-getrecord.xml
+  /search:
+    get:
+      tags:
+      - Search
+      operationId: searchExport
+      summary: Search the repository and export matching records
+      description: >-
+        Invenio search endpoint. With a machine-readable `of` (output format) value it
+        returns records rather than HTML, which makes it the practical export route for
+        selections that do not map onto an OAI-PMH set. A comment at the top of each XML
+        response reports the total match count as
+        `Search-Engine-Total-Number-Of-Results`; an unrestricted query reported 221,931
+        records on 2026-09-01. Only the output formats actually exercised are enumerated
+        below.
+      parameters:
+      - name: p
+        in: query
+        required: false
+        description: Search pattern.
+        schema:
+          type: string
+        example: barcelona
+      - name: of
+        in: query
+        required: false
+        description: >-
+          Output format. `xm` returns MARC21 XML in the http://www.loc.gov/MARC21/slim
+          namespace; `xd` returns Dublin Core XML; `hx` returns BibTeX. The default is the
+          HTML interface.
+        schema:
+          type: string
+          enum:
+          - xm
+          - xd
+          - hx
+        example: xd
+      - name: c
+        in: query
+        required: false
+        description: Restrict the search to a named collection.
+        schema:
+          type: string
+      - name: rg
+        in: query
+        required: false
+        description: Number of records per response page.
+        schema:
+          type: integer
+          minimum: 1
+        example: 2
+      - name: jrec
+        in: query
+        required: false
+        description: Index of the first record to return, for paging.
+        schema:
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Matching records in the requested output format.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                dublinCore:
+                  summary: Dublin Core export (of=xd)
+                  externalValue: examples/uab-ddd-search-dublin-core.xml
+externalDocs:
+  url: https://www.uab.cat/en/libraries/digital-document-repository
+  description: DDD service page, Servei de Biblioteques de la UAB

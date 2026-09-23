@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://ddd.uab.cat/css/oai2.xsl.v1.0" ?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+<responseDate>2026-09-01T17:39:10Z</responseDate><request verb="ListMetadataFormats">http://ddd.uab.cat/oai2d</request><ListMetadataFormats>
+<metadataFormat><metadataPrefix>marcxml</metadataPrefix><schema>http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema><metadataNamespace>http://www.loc.gov/MARC21/slim</metadataNamespace></metadataFormat><metadataFormat><metadataPrefix>edm</metadataPrefix><schema>https://www.europeana.eu/schemas/edm/EDM.xsd</schema><metadataNamespace>http://www.europeana.eu/schemas/edm/</metadataNamespace></metadataFormat><metadataFormat><metadataPrefix>oai_openaire</metadataPrefix><schema>https://www.openaire.eu/schema/repo-lit/4.0/openaire.xsd</schema><metadataNamespace>https://www.openaire.eu/schema/repo-lit/4.0/openaire.xsd</metadataNamespace></metadataFormat><metadataFormat><metadataPrefix>oai_dc</metadataPrefix><schema>http://www.openarchives.org/OAI/1.1/dc.xsd</schema><metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace></metadataFormat></ListMetadataFormats>
+</OAI-PMH>
+

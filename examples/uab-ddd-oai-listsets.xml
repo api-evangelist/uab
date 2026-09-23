@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://ddd.uab.cat/css/oai2.xsl.v1.0" ?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+<responseDate>2026-09-01T17:39:33Z</responseDate><request verb="ListSets">http://ddd.uab.cat/oai2d</request><ListSets>
+  <set>
+<setSpec>tesisuab</setSpec><setName>UAB doctoral theses</setName>   </set>
+  <set>
+<setSpec>uabeuropeana</setSpec><setName>UAB records for Europeana repository</setName>   </set>
+  <set>
+<setSpec>fanzins</setSpec><setName>Fanzins - Fanzines</setName>   </set>
+  <set>
+<setSpec>datasets</setSpec><setName>Dades de recerca de la UAB</setName>   </set>
+  <set>
+<setSpec>scholar</setSpec><setName>Research documents and scholar material</setName>   </set>
+  <set>
+<setSpec>worpapuab</setSpec><setName>Working papers de la UAB</setName>   </set>
+  <set>
+<setSpec>artpubuabnoredi</setSpec><setName>UAB articles no REDI managed</setName>   </set>
+  <set>
+<setSpec>primocentral</setSpec><setName>Primo Central </setName>   </set>
+  <set>
+<setSpec>raac</setSpec><setName>Old art and culture journals</setName>   </set>
+  <set>
+<setSpec>driver</setSpec><setName>Driver</setName>   </set>
+  <set>
+<setSpec>estudisuab</setSpec><setName>Estudis: documents de recerca i informes</setName>   </set>
+  <set>
+<setSpec>trerecprouab </setSpec><setName>Treballs de recerca i projectes de final de carrera de la UAB</setName>   </set>
+  <set>
+<setSpec>materials_docents</setSpec><setName>UAB teaching resources</setName>   </set>
+  <set>
+<setSpec>prepubuab</setSpec><setName>Prepublicacions i preprints de la UAB</setName>   </set>
+  <set>
+<setSpec>plagesdad</setSpec><setName>Plans de gestió de dades</setName>   </set>
+  <set>
+<setSpec>poncomuab</setSpec><setName>Ponències i comunicacions de la UAB</setName>   </set>
+  <set>
+<setSpec>artpubuab</setSpec><setName>Articles escrits per personal UAB o publicats per la universitat </setName>   </set>
+  <set>
+<setSpec>revuab</setSpec><setName>UAB Journals</setName>   </set>
+</ListSets>
+</OAI-PMH>
+

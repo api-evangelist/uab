@@ -1,0 +1,107 @@
+specification: API Evangelist Identity Federation Record
+specificationVersion: '0.1'
+provider: Autonomous University of Barcelona
+providerId: uab
+generated: '2026-09-01'
+method: probed
+source: >-
+  Direct probes of https://sso.uab.cat/cas/idp/metadata (HTTP 200, text/xml) and
+  https://sso.uab.cat/cas/p3/serviceValidate (CAS 3.0 protocol response); the RedIRIS SIR
+  federation aggregate https://www.rediris.es/sir/shib1metadata.xml (HTTP 200, 1.34 MB,
+  336 EntityDescriptors) parsed for the UAB entity; the eduGAIN technical entity listing
+  at https://technical.edugain.org/api.php?action=list_entities&format=json (HTTP 200);
+  and DNS + RIPE whois resolution of every host involved to settle who operates each one.
+description: >-
+  UAB's identity surface has two distinct faces and they have different operators. The
+  institution self-publishes a SAML 2.0 IdP EntityDescriptor from its own Apereo CAS
+  server at sso.uab.cat, on UAB's own RIPE allocation — that is an institution-operated,
+  institution-published, machine-readable contract, and it is the strongest such contract
+  in this profile. Separately, UAB is registered in the Spanish national federation SIR
+  (RedIRIS) and reaches eduGAIN through it; that entity carries UAB's organisation name
+  and a shibmd:Scope of uab.es, but every SSO, SLO and attribute-authority endpoint in it
+  terminates on sir.rediris.es, so its engineering is RedIRIS's gateway, not UAB's.
+  Recording both, with the operator distinction stated, is the point of this file.
+
+entities:
+- entityID: https://sso.uab.cat/cas/idp
+  name: UAB Single Sign-On — Apereo CAS SAML 2.0 Identity Provider
+  x-operator: institution
+  role: IDPSSODescriptor
+  scope: sso.uab.cat
+  metadata_url: https://sso.uab.cat/cas/idp/metadata
+  metadata_status: 200
+  metadata_content_type: text/xml;charset=UTF-8
+  archived: identity-federation/uab-sso-cas-saml2-idp-metadata.xml
+  software: Apereo CAS (Server header Apache/2.4.37 Red Hat Enterprise Linux; X-Application-Context cas-1)
+  protocols:
+  - urn:oasis:names:tc:SAML:2.0:protocol
+  - urn:oasis:names:tc:SAML:1.1:protocol
+  - urn:mace:shibboleth:1.0
+  single_sign_on_services:
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    location: https://sso.uab.cat/cas/idp/profile/SAML2/POST/SSO
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign
+    location: https://sso.uab.cat/cas/idp/profile/SAML2/POST-SimpleSign/SSO
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    location: https://sso.uab.cat/cas/idp/profile/SAML2/Redirect/SSO
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:SOAP
+    location: https://sso.uab.cat/cas/idp/profile/SAML2/SOAP/ECP
+  single_logout_services:
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    location: https://sso.uab.cat/cas/idp/profile/SAML2/POST/SLO
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    location: https://sso.uab.cat/cas/logout
+  key_descriptors:
+  - use: signing
+  - use: encryption
+  x-operator-basis: >-
+    sso.uab.cat resolves to 158.109.121.62. RIPE whois for 158.109.0.0/16 returns netname
+    XIUAB, descr "Xarxa Informatica de la Universitat Autonoma de Barcelona (UAB)",
+    country ES — UAB's own address space, with no CNAME onto a vendor. The metadata is
+    served by UAB's own CAS instance at a UAB-controlled path. Institution-operated and
+    institution-published.
+
+- entityID: https://www.rediris.es/sir/uabidp
+  name: Universitat Autònoma de Barcelona (SIR federation entity)
+  x-operator: federation
+  role: IDPSSODescriptor + AttributeAuthorityDescriptor
+  scope: uab.es
+  federation:
+    name: SIR — Servicio de Identidad de RedIRIS
+    registration_authority: http://www.rediris.es/
+    aggregate: https://www.rediris.es/sir/shib1metadata.xml
+    aggregate_status: 200
+    entity_present: true
+    interfederation: eduGAIN
+    edugain_entity_id: '680530'
+    edugain_membership_date: '2013-05-31'
+  archived: identity-federation/uab-sir-federation-entity.xml
+  organization_name: Universitat Autònoma de Barcelona
+  organization_url: http://www.uab.es/
+  protocols:
+  - urn:mace:shibboleth:1.0
+  - urn:oasis:names:tc:SAML:1.1:protocol
+  - urn:oasis:names:tc:SAML:2.0:protocol
+  single_sign_on_services:
+  - binding: urn:mace:shibboleth:1.0:profiles:AuthnRequest
+    location: https://sir.rediris.es/uab/shib13/idp/SSOService.php
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    location: https://sir.rediris.es/uab/saml2/idp/SSOService.php
+  attribute_service:
+    binding: urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding
+    location: https://sir.rediris.es/uab/shib13/idp/aa.php
+  x-operator-basis: >-
+    The Organization block names UAB and the shibmd:Scope is uab.es, so the identity and
+    the user population are UAB's. Every endpoint, however, is a per-institution path on
+    sir.rediris.es, which resolves to 130.206.13.20 — RIPE netname REDIRIS, "Spanish
+    National R&D Network". The technical contact is sir@rediris.es, not a UAB address.
+    This is SIR's gateway IdP proxying for UAB, the same shape as AAF's Rapid IdP: UAB's
+    identity, RedIRIS's engineering. Classified federation, which per the university
+    pipeline contract is recorded and never deleted.
+
+notes: >-
+  A false negative worth naming: idp.uab.cat does not resolve, and searching eduGAIN for
+  "uab.cat" returns nothing. Every uab-shaped entity in eduGAIN except one belongs to the
+  University of Alabama at Birmingham or Universidade Aberta. UAB Barcelona's entity is
+  findable only by its RedIRIS-namespaced entityID and its Catalan/Spanish display name,
+  which is exactly the class of surface a hostname-only sweep misses.

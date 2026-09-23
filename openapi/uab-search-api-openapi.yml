@@ -1,0 +1,103 @@
+openapi: 3.2.0
+info:
+  title: UAB Dipòsit Digital de Documents (DDD) — Harvesting and…
+  version: 1.0.0
+  summary: Anonymous, machine-readable harvesting and metadata-export interface for the Dipòsit Digital de Documents de la UAB, the institutional repository of the Universitat Autònoma de Barcelona.
+  description: THIS CONTRACT IS DERIVED, NOT PUBLISHED BY UAB.
+  contact:
+    name: Servei de Biblioteques de la UAB — Dipòsit Digital de Documents
+    email: ddd.bib@uab.cat
+    url: https://www.uab.cat/en/libraries/digital-document-repository
+  license:
+    name: CC0 1.0 Universal (metadata records)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.uab.cat/web/about-the-uab/itineraries/legal-notice-1345668684716.html
+  x-operator: institution
+  x-operator-basis: Host under the institution's own registrable domain AND inside the institution's own RIPE allocation (158.109.2.47, netname XIUAB). Confirmed by the service's own Identify response, which self-reports repositoryIdentifier ddd.uab.cat and a uab.cat admin address. No CNAME onto any vendor platform.
+  x-provenance:
+    method: derived
+    generated: '2026-09-01'
+    derived_from: probed
+    source:
+    - https://ddd.uab.cat/oai2d?verb=Identify
+    - https://ddd.uab.cat/oai2d?verb=ListMetadataFormats
+    - https://ddd.uab.cat/oai2d?verb=ListSets
+    - https://ddd.uab.cat/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=coldb
+    - https://ddd.uab.cat/oai2d?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:ddd.uab.cat:335819
+    - https://ddd.uab.cat/search?p=barcelona&of=xm
+    - https://ddd.uab.cat/search?p=barcelona&of=xd
+    examples: examples/uab-examples.yml
+    note: Written by API Evangelist from observed behaviour. It must not be read as a UAB-published specification, and it must not be credited to UAB as though the institution authored it.
+servers:
+- url: https://ddd.uab.cat
+  description: Dipòsit Digital de Documents de la UAB — the main institutional repository
+- url: https://traces.uab.cat
+  description: Traces — base de dades de llengua i literatura catalanes (same interface, UAB-operated)
+- url: https://ifmuc.uab.cat
+  description: IFMuC — Inventari dels Fons Musicals de Catalunya (same interface, UAB-operated)
+tags:
+- name: Search
+  description: Invenio search with machine-readable output formats, used for record export outside the OAI-PMH flow.
+paths:
+  /search:
+    get:
+      tags:
+      - Search
+      operationId: searchExport
+      summary: Search the repository and export matching records
+      description: Invenio search endpoint. With a machine-readable `of` (output format) value it returns records rather than HTML, which makes it the practical export route for selections that do not map onto an OAI-PMH set. A comment at the top of each XML response reports the total match count as `Search-Engine-Total-Number-Of-Results`; an unrestricted query reported 221,931 records on 2026-09-01. Only the output formats actually exercised are enumerated below.
+      parameters:
+      - name: p
+        in: query
+        required: false
+        description: Search pattern.
+        schema:
+          type: string
+        example: barcelona
+      - name: of
+        in: query
+        required: false
+        description: Output format. `xm` returns MARC21 XML in the http://www.loc.gov/MARC21/slim namespace; `xd` returns Dublin Core XML; `hx` returns BibTeX. The default is the HTML interface.
+        schema:
+          type: string
+          enum:
+          - xm
+          - xd
+          - hx
+        example: xd
+      - name: c
+        in: query
+        required: false
+        description: Restrict the search to a named collection.
+        schema:
+          type: string
+      - name: rg
+        in: query
+        required: false
+        description: Number of records per response page.
+        schema:
+          type: integer
+          minimum: 1
+        example: 2
+      - name: jrec
+        in: query
+        required: false
+        description: Index of the first record to return, for paging.
+        schema:
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Matching records in the requested output format.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                dublinCore:
+                  summary: Dublin Core export (of=xd)
+                  externalValue: examples/uab-ddd-search-dublin-core.xml
+externalDocs:
+  url: https://www.uab.cat/en/libraries/digital-document-repository
+  description: DDD service page, Servei de Biblioteques de la UAB

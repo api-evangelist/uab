@@ -12,10 +12,12 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  Autonomous University of Barcelona does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
+  Autonomous University of Barcelona does not publish a unified public rate-limit table across its APIs, and
+  no rate-limit header was returned by any endpoint probed on 2026-09-01. The open
+  OAI-PMH and Invenio export endpoints at ddd, traces, ifmuc and revistes may throttle
+  large-scale automated harvesting; clients should harvest politely, honor Retry-After,
+  and contact ddd.bib@uab.cat for bulk access. An earlier version of this file also
+  named IIIF; no IIIF endpoint was found on any UAB host and the claim is withdrawn.
 notes: Confirm per-service limits with each API's documentation; harvest responsibly.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/apis.yml

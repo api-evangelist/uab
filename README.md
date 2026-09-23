@@ -64,55 +64,83 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The Autonomous University of Barcelona (Universitat Autònoma de Barcelona, UAB) is a public research university in Bellaterra, near Barcelona, Spain, founded in 1968 and ranked #175 in the QS World University Rankings 2025. This repository catalogs UAB's public, machine-accessible footprint as an [APIs.json](https://apisjson.org) provider profile. UAB does not operate a formal developer portal; its strongest public, programmatic surface is the open scholarly infrastructure of its institutional repository.
+The Universitat Autònoma de Barcelona (UAB) is a public research university in Bellaterra, Catalonia, Spain, founded in 1968. This repository catalogs UAB's public, machine-accessible footprint as an [APIs.json](https://apisjson.org) provider profile, re-profiled on 2026-09-01 under the API Evangelist university pipeline, which settles **who operates** each surface before recording it.
+
+UAB is one of the few institutions in this cohort whose programmable footprint is genuinely its own. It runs four OAI-PMH 2.0 endpoints and a SAML 2.0 identity provider on its own RIPE allocation. It publishes no specification for any of them, and it operates no developer programme.
 
 - APIs.json: https://raw.githubusercontent.com/api-evangelist/uab/refs/heads/main/apis.yml
 - Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=uab-api-evangelist&utm_content=repo
 
 ## Type
 
-- Index / Consumer / 3rd-Party
+- university / Public Research University / Index / Consumer / 3rd-Party
 
 ## Tags
 
-Education, Higher Education, University, Spain, Catalonia, Open Access, Institutional Repository, OAI-PMH, Research Data
+Education, Higher Education, University, Spain, Catalonia, Research, Open Access, Institutional Repository, Research Repository, Research Data, OAI-PMH, Identity Federation, Scholarly Publishing
 
-## APIs
+## Surfaces, by operator
 
-- **DDD Digital Document Repository OAI-PMH** — OAI-PMH 2.0 metadata harvesting endpoint for the Dipòsit Digital de Documents de la UAB (Invenio platform, OpenAIRE-compliant). Base URL `https://ddd.uab.cat/oai2d`. Docs: https://www.uab.cat/en/libraries/digital-document-repository
-- **CSUC Research Data Repository (CORA RDR)** — UAB research data published via the federated Catalan CSUC/CORA research data repository (FAIR, EOSC-aligned consortium platform; not a UAB-only API). Docs: https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html
+Every entry carries an `x-operator`. `institution` means UAB runs the thing the entry describes; `tenant`, `federation` and `registry` mean the relationship is real and UAB's while the contract belongs to someone else.
 
-## Plans
+### institution — UAB's own (7)
 
-- [plans/uab-plans-pricing.yml](plans/uab-plans-pricing.yml)
+- **DDD — Dipòsit Digital de Documents (OAI-PMH 2.0)** — `https://ddd.uab.cat/oai2d`. 221,931 records, 18 sets, four metadata prefixes (`oai_dc`, `marcxml`, `edm`, `oai_openaire`). Identify, ListSets, ListMetadataFormats, ListIdentifiers and GetRecord all verified 200.
+- **DDD Invenio search and export** — `https://ddd.uab.cat/search`. MARC21 XML, Dublin Core and BibTeX export, anonymous, no key.
+- **Traces — Catalan language and literature database (OAI-PMH 2.0)** — `https://traces.uab.cat/oai2d`.
+- **IFMuC — Inventari dels Fons Musicals de Catalunya (OAI-PMH 2.0)** — `https://ifmuc.uab.cat/oai2d`.
+- **Revistes UAB — self-hosted Open Journal Systems** — per-journal OAI-PMH endpoints, e.g. `https://revistes.uab.cat/catJL/oai`. UAB runs the instance; PKP's generic REST contract is not saved here.
+- **UAB SSO — SAML 2.0 Identity Provider** — `https://sso.uab.cat/cas/idp/metadata`. A complete, self-published EntityDescriptor from UAB's own Apereo CAS server. The one institution-published machine-readable contract in this profile.
+- **UAB Central Authentication Service (CAS 3.0)** — `https://sso.uab.cat/cas/`.
 
-## Rate Limits
+### federation (1)
 
-- [rate-limits/uab-rate-limits.yml](rate-limits/uab-rate-limits.yml)
+- **UAB in SIR / eduGAIN** — entityID `https://www.rediris.es/sir/uabidp`, scope `uab.es`, present in the RedIRIS SIR aggregate and in eduGAIN as entity 680530. UAB's identity, RedIRIS's engineering — every endpoint terminates on `sir.rediris.es`.
 
-## FinOps
+### tenant (1)
 
-- [finops/uab-finops.yml](finops/uab-finops.yml)
+- **CORA Repositori de Dades de Recerca — UAB collection** — `https://dataverse.csuc.cat/dataverse/UAB`, 567 datasets, contact `ddd.bib@uab.cat`, DOIs under CSUC's prefix 10.34810. The data is UAB's; the Dataverse platform, contract and DOI registration are CSUC's, and CSUC's specification is deliberately not saved here.
+
+### registry (2)
+
+- **Crossref** — member 3612, DOI prefix 10.5565, 23,089 deposited DOIs.
+- **ROR** — https://ror.org/052g8jq94.
+
+## Artifacts
+
+- [openapi/uab-ddd-openapi.yml](openapi/uab-ddd-openapi.yml) — **derived by API Evangelist**, not published by UAB. Written from live probes; pristine copy in [openapi/_original/](openapi/_original/).
+- [conformance/uab-conformance.yml](conformance/uab-conformance.yml) — `education` regime standards. Evidenced: `oai-pmh`, `saml`, `shibboleth`, `crossref` (institution); `datacite` (tenant).
+- [identity-federation/uab-identity-federation.yml](identity-federation/uab-identity-federation.yml) — both identity entities, with archived metadata.
+- [authentication/uab-authentication.yml](authentication/uab-authentication.yml)
+- [examples/uab-examples.yml](examples/uab-examples.yml) — eight verbatim captured responses.
+- [json-ld/uab-context.jsonld](json-ld/uab-context.jsonld)
+- [plans/uab-plans-pricing.yml](plans/uab-plans-pricing.yml) · [rate-limits/uab-rate-limits.yml](rate-limits/uab-rate-limits.yml) · [finops/uab-finops.yml](finops/uab-finops.yml) · [security/uab-domain-security.yml](security/uab-domain-security.yml)
 
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-09-01
 
 ## Common Properties
 
 - Website: https://www.uab.cat/
+- Documentation: https://www.uab.cat/en/libraries/digital-document-repository
+- Research repository: https://ddd.uab.cat/
+- Open science / research data: https://www.uab.cat/ca/ciencia-oberta/dades-de-recerca-obert
+- AI policy: https://www.uab.cat/ca/etica-recerca/artificial
+- Legal notice: https://www.uab.cat/web/about-the-uab/itineraries/legal-notice-1345668684716.html
+- Privacy: https://www.uab.cat/web/la-uab/itineraris/proteccio-de-dades-1345668257177.html
 - LinkedIn: https://www.linkedin.com/school/uabbarcelona/
-- Plans: plans/uab-plans-pricing.yml
-- Rate Limits: rate-limits/uab-rate-limits.yml
-- FinOps: finops/uab-finops.yml
 - Review: review.yml
 
 ## Notes
 
-- No formal, publicly documented UAB developer portal or API program was found, and no official institutional GitHub organization for the Catalan UAB (uab.cat) was confirmed. Unrelated "uab.edu"/uabrc GitHub orgs belong to the University of Alabama at Birmingham and were deliberately excluded.
-- The DDD OAI-PMH endpoint was verified live (valid Identify response, Invenio-based, OpenAIRE-compliant). Direct curl probes from the cataloging network returned 000 for some HTTPS hosts due to apparent TLS/bot filtering; those surfaces were verified via independent fetch.
-- Student academic services (SIA, sia.uab.es) are gated login portals without public API documentation.
+- **No specification is published by UAB for anything.** The OpenAPI in this repository is derived by API Evangelist from live probes and is marked `method: derived` throughout. It must not be read as a UAB contract.
+- **No developer programme.** No API keys, no OAuth authorization server (CAS's OIDC module returns 404 on both discovery paths and on `/cas/oidc/jwks`), no registration, no `llms.txt`. `api.uab.cat`, `data.uab.cat`, `opendata.uab.cat`, `dades.uab.cat`, `idp.uab.cat` and `cataleg.uab.cat` do not resolve.
+- **Operator was settled by IP ownership, not hostname.** `ddd`, `traces`, `ifmuc`, `revistes`, `sso` and `www` all resolve inside 158.109.0.0/16 — RIPE netname `XIUAB`, "Xarxa Informatica de la Universitat Autonoma de Barcelona". `dataverse.csuc.cat` resolves into `CESCANET` / "CSUC Services", and `sir.rediris.es` into `REDIRIS`.
+- **A dead pointer was removed.** The previous profile's only research-data pointer returned HTTP 200 with a body byte-identical to UAB's 404 page — a soft-404 reading as a live claim.
+- **Searching in Catalan was load-bearing.** The AI policy exists only on the Catalan surface; Traces and IFMuC were found through DDD's own OAI-PMH `friends` declaration; and UAB's eduGAIN entity is findable only by its RedIRIS-namespaced entityID, since every `uab` host in eduGAIN belongs to the University of Alabama at Birmingham or Universidade Aberta.
+- No official institutional GitHub organisation for the Catalan UAB (`uab.cat`) was found. `github.com/UAb` is Universidade Aberta; `uab.edu` / `uabrc` orgs belong to Alabama-Birmingham. All deliberately excluded.
 - No endpoints, keys, or specifications were fabricated; only confirmed public surfaces are cataloged.
 
 ## Maintainers

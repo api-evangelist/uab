@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://ddd.uab.cat/css/oai2.xsl.v1.0" ?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+<responseDate>2026-09-01T17:39:55Z</responseDate><request verb="GetRecord" metadataPrefix="oai_dc" identifier="oai:ddd.uab.cat:335819">http://ddd.uab.cat/oai2d</request><GetRecord>
+<record><header><identifier>oai:ddd.uab.cat:335819</identifier><datestamp>2026-09-01T07:12:44Z</datestamp></header><metadata><oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:invenio="http://invenio-software.org/elements/1.0" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+  <dc:language>cat</dc:language>
+  <dc:title>L'Alta Edat Mitjana a la Catalunya central (segles VI-XI): estudi històric i arqueològic de la conca mitjana del riu Llobregat</dc:title>
+  <dc:creator>Gibert Rebull, Jordi</dc:creator>
+  <dc:type>Article</dc:type>
+  <dc:publisher/>
+  <dc:date>2012</dc:date>
+  <dc:description>Aquest article resumeix la tesi doctoral que, dirigida pel professor Ramon Martí Castelló, fou defensada el passat dia 16 de juny de 2011 a la Universitat Autònoma de Barcelona. Conformaren el tribunal encarregat d’avaluar-la els doctors Jordi Bolòs Masclans, catedràtic de la Universitat de Lleida, com a president, Marta Sancho Planas, professora de la Universitat de Barcelona, com a secretària, i Ernesto Pastor Díaz de Garayo, de la Universitat del País Basc, com a vocal, tots ells especialistes reconeguts en història i arqueologia de l’alta edat mitjana, que van tenir llavors l’amabilitat de concedir al treball la màxima qualificació i d’aportar tota una sèrie de consideracions de gran vàlua. Per altra banda, l’elaboració d’aquesta tesi ha tingut lloc en el marc del projecte «Organización fiscal y ocupación del territorio durante la Alta Edad Media» (HAR2009-07874), finançat per la Subdirección General de Proyectos de Investigación; igualment, el seu autor forma part del Grup de Recerca Emergent sobre Ocupació, Organització i Defensa del Territori Medieval (OCORDE, 2009 SGR 727), reconegut i finançat per l’Agència de Gestió d’Ajuts Universitaris i de Recerca de la Generalitat de Catalunya.</dc:description>
+  <dc:subject>Alta edat mitjana</dc:subject>
+  <dc:subject>Catalunya Central</dc:subject>
+  <dc:subject>Arqueologia</dc:subject>
+  <dc:subject>Poblament</dc:subject>
+  <dc:subject>Territori</dc:subject>
+  <dc:subject>Early Middle Ages</dc:subject>
+  <dc:subject>Central Catalonia</dc:subject>
+  <dc:subject>Archaeology</dc:subject>
+  <dc:subject>Settlement</dc:subject>
+  <dc:subject>Territory</dc:subject>
+  <dc:relation>Butlletí de la Societat Catalana d'Estudis Històrics ; Num. 23 (2012), p. 353-385</dc:relation>
+  <dc:identifier>https://ddd.uab.cat/record/335819</dc:identifier>
+  <dc:identifier>urn:10.2436/20.1001.01.98</dc:identifier>
+  <dc:identifier>urn:oai:ddd.uab.cat:335819</dc:identifier>
+  <dc:identifier>urn:articleid:20133995n23p353</dc:identifier>
+  <dc:identifier>urn:oai:egreta.uab.cat:publications/eca6b55d-d3dc-4e2a-a924-02b9d880e68d</dc:identifier>
+  <dc:rights>open access</dc:rights>
+  <dc:rights>Aquest document està subjecte a una llicència d'ús Creative Commons. Es permet la reproducció total o parcial, la distribució, i la comunicació pública de l'obra, sempre que no sigui amb finalitats comercials, i sempre que es reconegui l'autoria de l'obra original. No es permet la creació d'obres derivades.</dc:rights>
+  <dc:rights>https://creativecommons.org/licenses/by-nc-nd/4.0/</dc:rights>
+  <dc:description>L’ estudi analitza les transformacions operades en la societat altmedieval prenent com a marc geogràfic de referència les terres de la Catalunya Central i com a punt de partida la desaparició del model d’ocupació rural majoritari de tradició baiximperial, les villae. Integrant totes les dades a l’abast, es caracteritzen els nous models de poblament així com l’organització dels territoris on s’insereixen. Per altra banda, s’ofereix una interpretació de les conseqüències del procés d’implantació de l’estat islàmic i, especialment, de la condició i l’estatus dels territoris de la Catalunya Central durant bona part del segle ix com a detentors d’una certa autonomia enfront dels poders polítics que els envolten. Finalment, es descriu, de nou amb dades arqueològiques i textuals, el procés de conquesta i d’integració d’aquests territoris dins l’àmbit comtal, atenent tant als espais de poder, com són castells, torres i esglésies, com als espais d’hàbitat pagès i les seves instal·lacions productives.</dc:description>
+  <dc:description>This paper highlights the transformations in early medieval society in Central Catalonia, taking the disappearance of the Roman rural settlement pattern, the villae, as its starting point. Integrating the available data, this study characterizes the new settlement patterns as well as the territorial organization. Moreover, it also interprets the consequences of the Islamic conquest and particularly the special legal status of the Central Catalonia territories, which remained partly autonomous from the political powers surrounding them during the ninth century. Finally, using both archaeological and written data, the article describes the conquest and integration of these territories into the Christian counties, in relation to the seats of power, such as castles, towers and churches, but also to peasant settlements and their production facilities.</dc:description>
+  <dc:format>application/pdf</dc:format>
+</oai_dc:dc>
+</metadata></record></GetRecord>
+</OAI-PMH>
+

@@ -1,0 +1,109 @@
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Autonomous University of Barcelona
+providerId: uab
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes on 2026-09-01 of https://ddd.uab.cat/oai2d, https://ddd.uab.cat/search,
+  https://sso.uab.cat/cas/login, https://sso.uab.cat/cas/p3/serviceValidate,
+  https://sso.uab.cat/cas/idp/metadata and https://dataverse.csuc.cat/api/dataverses/UAB.
+description: >-
+  UAB's programmable surface splits cleanly in two on authentication. Everything that
+  carries scholarly metadata out of the institution — OAI-PMH harvesting and Invenio
+  export at ddd, traces, ifmuc and the journal platform — is open and anonymous, with no
+  key, no registration and no quota published. Everything that touches a person is behind
+  the institution's own Apereo CAS server, which speaks CAS 3.0 to UAB applications and
+  SAML 2.0 to federated relying parties. There is no API-key programme, no OAuth
+  authorization server for third-party developers, and no self-service developer
+  registration anywhere on the estate.
+
+mechanisms:
+- name: Anonymous
+  applies_to:
+  - uab:ddd-oai-pmh
+  - uab:ddd-search
+  - uab:traces-oai-pmh
+  - uab:ifmuc-oai-pmh
+  - uab:revistes-ojs-oai
+  x-operator: institution
+  type: none
+  evidence:
+    url: https://ddd.uab.cat/oai2d?verb=Identify
+    status: 200
+    note: >-
+      Served without credentials, without a cookie and without a rate-limit header. The
+      Identify response's metadataPolicy declares free and unlimited use of records under
+      CC0 1.0; the dataPolicy notes that access to full text may be free, embargoed or
+      restricted to the UAB domain, and that submission is restricted.
+
+- name: CAS 3.0 ticket validation
+  applies_to:
+  - uab:sso-cas
+  x-operator: institution
+  type: ticket
+  endpoints:
+    login: https://sso.uab.cat/cas/login
+    validate: https://sso.uab.cat/cas/p3/serviceValidate
+    logout: https://sso.uab.cat/cas/logout
+  evidence:
+    url: 'https://sso.uab.cat/cas/p3/serviceValidate?service=https://example.org&ticket=ST-invalid'
+    status: 403
+    body: >-
+      <cas:serviceResponse><cas:authenticationFailure code="INVALID_TICKET">No se ha
+      reconocido el tique 'ST-invalid'</cas:authenticationFailure></cas:serviceResponse>
+    note: >-
+      A well-formed CAS protocol rejection of a deliberately invalid ticket — evidence the
+      validation endpoint is live and speaking the protocol, not evidence of any access
+      granted. Service registration is administrative; there is no self-service path.
+
+- name: SAML 2.0 web browser SSO
+  applies_to:
+  - uab:sso-saml-idp
+  - uab:sir-federation-entity
+  x-operator: institution
+  type: saml
+  metadata: https://sso.uab.cat/cas/idp/metadata
+  entity_id: https://sso.uab.cat/cas/idp
+  bindings:
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+  - urn:oasis:names:tc:SAML:2.0:bindings:SOAP
+  evidence:
+    url: https://sso.uab.cat/cas/idp/metadata
+    status: 200
+    note: >-
+      Signing and encryption key descriptors both present. Federated relying parties reach
+      UAB either directly against this entity or through the RedIRIS SIR gateway entity
+      https://www.rediris.es/sir/uabidp, which is federation-operated and detailed in
+      identity-federation/uab-identity-federation.yml.
+
+- name: Dataverse API token
+  applies_to:
+  - uab:cora-rdr
+  x-operator: tenant
+  type: apiKey
+  in: header
+  parameter_name: X-Dataverse-key
+  evidence:
+    url: https://dataverse.csuc.cat/api/dataverses/UAB
+    status: 200
+    note: >-
+      Read access to UAB's collection is anonymous; write access uses the X-Dataverse-key
+      header advertised in the platform's CORS Access-Control-Allow-Headers. This scheme is
+      CSUC's and Dataverse's, recorded here because it is how UAB's research data is
+      reached — not because UAB designed it.
+
+absent:
+- mechanism: oauth2
+  note: No authorization server, no /.well-known/oauth-authorization-server, no consent screen on any UAB host.
+- mechanism: apiKey
+  note: No API-key issuance, developer registration or key-management page exists on any UAB host.
+- mechanism: openid_connect
+  note: >-
+    Apereo CAS can serve OIDC, but the module is not exposed here:
+    https://sso.uab.cat/cas/oidc/.well-known/openid-configuration returns 404,
+    https://sso.uab.cat/.well-known/openid-configuration returns 404, and
+    https://sso.uab.cat/cas/oidc/jwks returns a CAS 404 error document. Probed
+    2026-09-01.

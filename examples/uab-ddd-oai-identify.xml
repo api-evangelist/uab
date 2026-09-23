@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://ddd.uab.cat/css/oai2.xsl.v1.0" ?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+<responseDate>2026-09-01T17:40:56Z</responseDate><request verb="Identify">http://ddd.uab.cat/oai2d</request><Identify>
+<repositoryName>Dipòsit Digital de Documents de la UAB</repositoryName><baseURL>http://ddd.uab.cat/oai2d</baseURL><protocolVersion>2.0</protocolVersion><adminEmail>ddd.bib@uab.cat</adminEmail><earliestDatestamp>2006-03-13T16:18:25Z</earliestDatestamp><deletedRecord>persistent</deletedRecord><granularity>YYYY-MM-DDThh:mm:ssZ</granularity><description><oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier
+                                       http://www.openarchives.org/OAI/2.0/oai-identifier.xsd"><scheme>oai</scheme><repositoryIdentifier>ddd.uab.cat</repositoryIdentifier><delimiter>:</delimiter><sampleIdentifier>oai:ddd.uab.cat:1234</sampleIdentifier></oai-identifier></description><description>
+<oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+<scheme>oai</scheme>
+<repositoryIdentifier>ddd.uab.cat</repositoryIdentifier>
+<delimiter>:</delimiter>
+<sampleIdentifier>oai:ddd.uab.cat:1234</sampleIdentifier>
+</oai-identifier>
+</description>
+<description>
+<eprints xmlns="http://www.openarchives.org/OAI/1.1/eprints" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/1.1/eprints http://www.openarchives.org/OAI/1.1/eprints.xsd">
+<content>
+<text>Many types of documents: thesis, articles, preprints, postprints, ebooks, rare books, periodicals, graphic documents, political posters...</text>
+<URL>https://ddd.uab.cat/</URL>
+</content>
+<metadataPolicy>
+<text>Free and unlimited use of records with Public Domain Dedication https://creativecommons.org/publicdomain/zero/1.0/</text>
+</metadataPolicy>
+<dataPolicy>
+<text>Access to records permitted to everyone. Access to fulltext can be free, embargoed or restricted to UAB domain. Reutilization license is defined individualy for each record; please view record url for concrete copyright license.</text>
+</dataPolicy>
+<submissionPolicy>
+<text>Submission restricted.</text>
+</submissionPolicy>
+</eprints>
+</description><description><friends xmlns="http://www.openarchives.org/OAI/2.0/friends/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/friends/
+      http://www.openarchives.org/OAI/2.0/friends.xsd"><baseURL>https://cds.cern.ch/oai2d</baseURL><baseURL>https://traces.uab.cat/oai2d</baseURL><baseURL>https://ifmuc.uab.cat/oai2d</baseURL></friends></description></Identify>
+</OAI-PMH>
+

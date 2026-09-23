@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" entityID="https://sso.uab.cat/cas/idp">
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
+        <Extensions>
+            <shibmd:Scope regexp="false">sso.uab.cat</shibmd:Scope>
+        </Extensions>
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDHjCCAgagAwIBAgIVAODL5r0yjll9f47RmsVqnCsMc6qxMA0GCSqGSIb3DQEB
+CwUAMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDAeFw0yMDA1MjEwOTAyMDha
+Fw00MDA1MjEwOTAyMDhaMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIGEznYkZsLOu+tWMudO5nTD82qs
+/C6RHaoIFI0RHRGtaJAshYH8A9NG0hjGLPGtfXyA2/d7or1MOk5vBlwpW3mMlp4v
+DqpkIumUSV8/E2t/X8KwEdqJXfJ48UNyNvGfuRGHFNXL8mUUpHx6YyUvko3VL1GL
+jj/YeQot0j0rwLt0qRYkh49vYpBXhe7ypEqCj1Bb+PaJo+ncQBTlQJsn/NuffUSO
+v0S8I5j87TD2wrEpVVAPCO4CAK4DZhCQOJLHgm3jLim/JHqax1Hb1DYZ4Jfajgro
+8+UDI2692bBe2CrKo0yt/32QIpseIsW4Cs2g4L2b7nZKM1985PJO+uHtuG0CAwEA
+AaNbMFkwHQYDVR0OBBYEFALyFYXCHuDwnWLFPdsf+G5eqwg0MDgGA1UdEQQxMC+C
+D3NhYy1kZXYudWFiLmNhdIYcc2FjLWRldi51YWIuY2F0L2lkcC9tZXRhZGF0YTAN
+BgkqhkiG9w0BAQsFAAOCAQEAZGNcIF2PGZ1UcXNunepsKpvZdfSelNcG0OEXH2m/
+VQF85pQMgmLwmqjZcHtx4m/DH3BFd2bKUtHznx3rMEQgek2S+1b/oNVLZfPhv9Di
+9SMxtiAlg4dVt3AM/RRR78G8pSVvD0iaqCXwaGC7jKxcWNvPv5KMdBd5EGSA9KnV
+2XNGoNmTFtJntRvf+eTKhRBTD4rhLLo1tmcuKAOiAy7mKm6GLYOSW26LooTFgdmP
+z7tR+PtPEoqNLFS1piqwRSp6IcWdufQ0JzRXs+T47IlNN5LQxyvflJ5oU6mIHu2B
+XnHzBG9vMm54g+ciFZkJ5yr/EOwU7nu+SMcA4iPkyfxSHw==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <KeyDescriptor use="encryption">
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDHjCCAgagAwIBAgIVAKsKEx1KKv6wnhRG4MZrA0pYhZ7iMA0GCSqGSIb3DQEB
+CwUAMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDAeFw0yMDA1MjEwOTAyMDha
+Fw00MDA1MjEwOTAyMDhaMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALCDfCTABTcdww6WUOWQXyK/q9GB
+oDYJToj65yucx5pDXDJP/A1ZLVKpcDzThjAoCcWqbeEp4mhcAZkulJNj0P2kWgPm
+BJaJdRfVJCTof5NGMK6LJaflNCpVZvv6UIUL0aDdYfQKJz5MXoHSvWkCjjAoFeTn
+/hQjzuqFRsfww79yu4HQnT2fcpY0hLR4q6r2kG6XdgxIhowbiBPepk73KE4iz0Qf
+l1zs9GjjwKkbGdhFSXXqzTSD0gptqxOmdrazTOBarj0YsMPrzh6saxmvMxol78G2
+4NnD4sfhWKr9UM0QuiqVGjzyXvU7wM2Jop0RT5I2Hry3QrjTebSNc20q1bECAwEA
+AaNbMFkwHQYDVR0OBBYEFCZ6dR+KbJLgynorTaOdJIiTt+pOMDgGA1UdEQQxMC+C
+D3NhYy1kZXYudWFiLmNhdIYcc2FjLWRldi51YWIuY2F0L2lkcC9tZXRhZGF0YTAN
+BgkqhkiG9w0BAQsFAAOCAQEAPPy8NHWpdU2PN198igk59Lk1zYZveZGW2XiCGx28
+aJnrdwX4n867qIJQy2vPyf+xhk+D4eSTWxTVgrw1TrLdyu1k+MMHlWjlcRY9+Xvk
+CnZcYQGj18uL1J7z7N7EShoOKFsuGJbXV845sCyLSFUV6SjVRjjGXzjmOUuqSEzl
+5IjlR/GwpJmVjpjyIrW34YJffIhWake75D9J6c2i9Le8N6o6YD8810nH/yup77OR
+qpqa3v9R4H7IL8J5lZGzcRcPfuvadJ/6S8dvusHet6lRAVs2zyw292gFAuEq/yxo
+m+Pc2f4qwM7GgRlM9ROXnhSkqTozxSn2J+zj3EgoM6hnqA==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+
+        <!--
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" 
+                                   Location="https://sso.uab.cat/cas/idp/profile/SAML1/SOAP/ArtifactResolution" index="1"/>
+        -->
+        
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.uab.cat/cas/idp/profile/SAML2/POST/SLO"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso.uab.cat/cas/logout" />
+
+        <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.uab.cat/cas/idp/profile/SAML2/POST/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://sso.uab.cat/cas/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso.uab.cat/cas/idp/profile/SAML2/Redirect/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso.uab.cat/cas/idp/profile/SAML2/SOAP/ECP"/>
+    </IDPSSODescriptor>
+
+    <!--
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+        <Extensions>
+            <shibmd:Scope regexp="false">example.org</shibmd:Scope>
+        </Extensions>
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDHjCCAgagAwIBAgIVAODL5r0yjll9f47RmsVqnCsMc6qxMA0GCSqGSIb3DQEB
+CwUAMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDAeFw0yMDA1MjEwOTAyMDha
+Fw00MDA1MjEwOTAyMDhaMBoxGDAWBgNVBAMMD3NhYy1kZXYudWFiLmNhdDCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIGEznYkZsLOu+tWMudO5nTD82qs
+/C6RHaoIFI0RHRGtaJAshYH8A9NG0hjGLPGtfXyA2/d7or1MOk5vBlwpW3mMlp4v
+DqpkIumUSV8/E2t/X8KwEdqJXfJ48UNyNvGfuRGHFNXL8mUUpHx6YyUvko3VL1GL
+jj/YeQot0j0rwLt0qRYkh49vYpBXhe7ypEqCj1Bb+PaJo+ncQBTlQJsn/NuffUSO
+v0S8I5j87TD2wrEpVVAPCO4CAK4DZhCQOJLHgm3jLim/JHqax1Hb1DYZ4Jfajgro
+8+UDI2692bBe2CrKo0yt/32QIpseIsW4Cs2g4L2b7nZKM1985PJO+uHtuG0CAwEA
+AaNbMFkwHQYDVR0OBBYEFALyFYXCHuDwnWLFPdsf+G5eqwg0MDgGA1UdEQQxMC+C
+D3NhYy1kZXYudWFiLmNhdIYcc2FjLWRldi51YWIuY2F0L2lkcC9tZXRhZGF0YTAN
+BgkqhkiG9w0BAQsFAAOCAQEAZGNcIF2PGZ1UcXNunepsKpvZdfSelNcG0OEXH2m/
+VQF85pQMgmLwmqjZcHtx4m/DH3BFd2bKUtHznx3rMEQgek2S+1b/oNVLZfPhv9Di
+9SMxtiAlg4dVt3AM/RRR78G8pSVvD0iaqCXwaGC7jKxcWNvPv5KMdBd5EGSA9KnV
+2XNGoNmTFtJntRvf+eTKhRBTD4rhLLo1tmcuKAOiAy7mKm6GLYOSW26LooTFgdmP
+z7tR+PtPEoqNLFS1piqwRSp6IcWdufQ0JzRXs+T47IlNN5LQxyvflJ5oU6mIHu2B
+XnHzBG9vMm54g+ciFZkJ5yr/EOwU7nu+SMcA4iPkyfxSHw==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://sso.uab.cat/cas/idp/profile/SAML1/SOAP/AttributeQuery"/>
+        <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso.uab.cat/cas/idp/profile/SAML2/SOAP/AttributeQuery"/>
+    </AttributeAuthorityDescriptor>
+    -->
+    
+    <Organization>
+        <OrganizationName xml:lang="en">Universitat Autònoma de Barcelona</OrganizationName>
+        <OrganizationDisplayName xml:lang="en">L'Autònoma</OrganizationDisplayName>
+        <OrganizationURL xml:lang="en">http://www.uab.cat</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="technical">
+        <GivenName>Joan Montal</GivenName>
+        <EmailAddress>joan.montal@uab.cat</EmailAddress>
+    </ContactPerson>
+    <ContactPerson contactType="support">
+        <GivenName>IT Services Support</GivenName>
+        <EmailAddress>cas@uab.cat</EmailAddress>
+    </ContactPerson>
+
+</EntityDescriptor>
+

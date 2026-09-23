@@ -8,6 +8,7 @@
     "foundingDate": "schema:foundingDate",
     "location": "schema:location",
     "sameAs": "schema:sameAs",
+    "identifier": "schema:identifier",
     "CollegeOrUniversity": "schema:CollegeOrUniversity",
     "WebAPI": "schema:WebAPI",
     "documentation": {
@@ -23,16 +24,26 @@
     "oaiBaseURL": {
       "@id": "uab:oaiBaseURL",
       "@type": "@id"
-    }
+    },
+    "operator": "uab:operator"
   },
   "@type": "CollegeOrUniversity",
-  "@id": "https://www.uab.cat/",
-  "name": "Autonomous University of Barcelona",
+  "@id": "https://ror.org/052g8jq94",
+  "name": "Universitat Autònoma de Barcelona",
+  "alternateName": "Autonomous University of Barcelona",
   "url": "https://www.uab.cat/",
-  "description": "Public research university in Bellaterra, near Barcelona, Spain, founded in 1968.",
+  "description": "Public research university in Bellaterra, near Barcelona, Catalonia, Spain, founded in 1968.",
   "foundingDate": "1968",
-  "location": "Bellaterra, Barcelona, Spain",
+  "location": "Bellaterra (Cerdanyola del Vallès), Barcelona, Catalonia, Spain",
+  "identifier": [
+    "https://ror.org/052g8jq94",
+    "grid.7080.f",
+    "crossref:3612",
+    "doi-prefix:10.5565"
+  ],
   "sameAs": [
+    "https://ror.org/052g8jq94",
+    "https://api.crossref.org/members/3612",
     "https://www.linkedin.com/school/uabbarcelona/",
     "https://en.wikipedia.org/wiki/Autonomous_University_of_Barcelona"
   ],
@@ -40,17 +51,45 @@
     {
       "@type": "WebAPI",
       "name": "DDD Digital Document Repository OAI-PMH",
-      "description": "OAI-PMH 2.0 metadata harvesting endpoint for the Diposit Digital de Documents de la UAB, running on the Invenio platform.",
+      "description": "OAI-PMH 2.0 metadata harvesting endpoint for the Dipòsit Digital de Documents de la UAB, running on the Invenio platform on UAB's own infrastructure.",
       "documentation": "https://www.uab.cat/en/libraries/digital-document-repository",
       "oaiBaseURL": "https://ddd.uab.cat/oai2d",
       "metadataProtocol": "OAI-PMH 2.0",
-      "repository": "Invenio"
+      "repository": "Invenio",
+      "operator": "institution"
     },
     {
       "@type": "WebAPI",
-      "name": "CSUC Research Data Repository (CORA RDR)",
-      "description": "Federated Catalan consortium research data repository where UAB publishes FAIR research data sets.",
-      "documentation": "https://www.uab.cat/web/research/open-access-uab/open-access-data-1345704463199.html"
+      "name": "Traces OAI-PMH",
+      "description": "OAI-PMH 2.0 endpoint for Traces, the UAB database of Catalan language and literature.",
+      "oaiBaseURL": "https://traces.uab.cat/oai2d",
+      "metadataProtocol": "OAI-PMH 2.0",
+      "repository": "Invenio",
+      "operator": "institution"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "IFMuC OAI-PMH",
+      "description": "OAI-PMH 2.0 endpoint for IFMuC, the Inventory of Music Collections of Catalonia, hosted by UAB.",
+      "oaiBaseURL": "https://ifmuc.uab.cat/oai2d",
+      "metadataProtocol": "OAI-PMH 2.0",
+      "repository": "Invenio",
+      "operator": "institution"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "UAB Single Sign-On SAML 2.0 Identity Provider",
+      "description": "SAML 2.0 EntityDescriptor self-published by UAB's Apereo CAS server, entityID https://sso.uab.cat/cas/idp.",
+      "endpointURL": "https://sso.uab.cat/cas/idp/metadata",
+      "operator": "institution"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "CORA Repositori de Dades de Recerca — UAB collection",
+      "description": "UAB's named research-data collection on the Dataverse platform operated by the Consorci de Serveis Universitaris de Catalunya. UAB's data, CSUC's contract.",
+      "endpointURL": "https://dataverse.csuc.cat/api/dataverses/UAB",
+      "documentation": "https://www.uab.cat/ca/ciencia-oberta/dades-de-recerca-obert",
+      "operator": "tenant"
     }
   ]
 }

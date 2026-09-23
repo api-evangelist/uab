@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extracted verbatim on 2026-09-01 from the RedIRIS SIR federation aggregate
+     https://www.rediris.es/sir/shib1metadata.xml (HTTP 200, 336 EntityDescriptors).
+     Namespace declarations inherited from the aggregate root are restated here so the
+     fragment is a well-formed standalone document; nothing else was changed. -->
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+                     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                     entityID="https://www.rediris.es/sir/uabidp">
+  <md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">uab.es</shibmd:Scope>
+    </md:Extensions>
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIEFjCCAv6gAwIBAgIEV2ZxWzANBgkqhkiG9w0BAQsFADCBpjEdMBsGCSqGSIb3
+            DQEJARYOc2lyQHJlZGlyaXMuZXMxCzAJBgNVBAYTAkVTMQ8wDQYDVQQIDAZNYWRy
+            aWQxDzANBgNVBAcMBk1hZHJpZDEQMA4GA1UECgwHUmVkSVJJUzErMCkGA1UECwwi
+            U2VydmljaW8gZGUgSWRlbnRpZGFkZXMgZGUgUmVkSVJJUzEXMBUGA1UEAwwOc2ly
+            LnJlZGlyaXMuZXMwHhcNMTYwNjE5MTAxOTM1WhcNMzEwNjE5MTAxOTM1WjCBrjEd
+            MBsGCSqGSIb3DQEJARYOc2lyQHJlZGlyaXMuZXMxCzAJBgNVBAYTAkVTMQ8wDQYD
+            VQQIDAZNYWRyaWQxDzANBgNVBAcMBk1hZHJpZDEQMA4GA1UECgwHUmVkSVJJUzEr
+            MCkGA1UECwwiU2VydmljaW8gZGUgSWRlbnRpZGFkZXMgZGUgUmVkSVJJUzEfMB0G
+            A1UEAwwWc2FtbGlkcC5zaXIucmVkaXJpcy5lczCCASIwDQYJKoZIhvcNAQEBBQAD
+            ggEPADCCAQoCggEBAI77hfdRkpEXnyVLsnH69m1kSTH3pGMMjc0Pe+R1BkDD5gUf
+            RtKO7w1bim6pauyMP5N4kIAg8hVtpATt31i5x3qClDXPtPvcoOj4DhMj1HvDYpOL
+            +Fre+4+OA6D4xw2jB1y5hNA2pzqvH6nU+M5mDAvZrY/7kfkz5Zriu9qkHAmJ2/v1
+            z/jmRJgp31P4VoG6O37sA6GsPcP/0F3+WWTwDUeUgaovPpb/IUVCkPY/B3GfhDSP
+            79l69UB4OJA4ktVulZXwrXWTU5m1PeJhH4mnEq8xQh+4Q0b1O3hNOt1y00loLFLI
+            y1J5ZeafYUlqhxfzY6k2HYZ5x0iSV4fX4xLIyzMCAwEAAaNCMEAwDAYDVR0TAQH/
+            BAIwADAgBgNVHSUBAf8EFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDgYDVR0PAQH/
+            BAQDAgSQMA0GCSqGSIb3DQEBCwUAA4IBAQB6Zl5xEbvZm210GSrA2tKZ+E+QKygU
+            69cJe0hW0IP25ICznuU4rAbR2mp4cu5nwTloGQUabC39L0EqQHqcxeSfrspye/yp
+            iT887c6JFB8L0hKyA/OF6IX8skTIlysvU2BiU2sQKr2oTh/4csP/JNeCVw/44Cn4
+            WfYyHmt3LE+KgF+lkA/sngE3O1NcP2aAYg7YN+LJ0VjvqisHdy0Rf5RAZRhMlAhC
+            sh9eDAI6e/QNP0dWdm6X8BHF5CU+CJ+/4f2cNXy1O3U7tm/4vkpokbWlFrHb53L8
+            1Z0E5AzkynDsKAr5d/tPcidIgySBuHPCuxkGT5a4rogXQCk706OKiVvl</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sir.rediris.es/uab/saml2/idp/SingleLogoutService.php" ResponseLocation="https://sir.rediris.es/uab/saml2/idp/SingleLogoutService.php"/>
+    <md:NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://sir.rediris.es/uab/shib13/idp/SSOService.php"/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sir.rediris.es/uab/saml2/idp/SSOService.php"/>
+  </md:IDPSSODescriptor>
+  <md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
+    <md:AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://sir.rediris.es/uab/shib13/idp/aa.php"/>
+  </md:AttributeAuthorityDescriptor>
+  <md:Organization>
+    <md:OrganizationName xml:lang="en">Universitat Autònoma de Barcelona</md:OrganizationName>
+    <md:OrganizationDisplayName xml:lang="en">Universitat Autònoma de Barcelona</md:OrganizationDisplayName>
+    <md:OrganizationURL xml:lang="en">http://www.uab.es/</md:OrganizationURL>
+  </md:Organization>
+  <md:ContactPerson contactType="technical">
+    <md:SurName>The SIR Team</md:SurName>
+    <md:EmailAddress>sir@rediris.es</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor>

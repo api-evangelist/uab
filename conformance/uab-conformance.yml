@@ -1,0 +1,200 @@
+specification: API Evangelist Domain Standard Conformance
+specificationVersion: '0.1'
+provider: Autonomous University of Barcelona
+providerId: uab
+regime: education
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes run 2026-09-01 against UAB's own hosts and against the registries and
+  federations UAB is a member of: the OAI-PMH interface at https://ddd.uab.cat/oai2d
+  (Identify, ListSets, ListMetadataFormats, ListIdentifiers, GetRecord all HTTP 200); the
+  sibling OAI-PMH interfaces at https://traces.uab.cat/oai2d and https://ifmuc.uab.cat/oai2d;
+  the OJS journal platform at https://revistes.uab.cat/catJL/oai; the SAML 2.0
+  EntityDescriptor UAB self-publishes at https://sso.uab.cat/cas/idp/metadata (HTTP 200,
+  text/xml), archived at identity-federation/uab-sso-cas-saml2-idp-metadata.xml; the
+  RedIRIS SIR aggregate https://www.rediris.es/sir/shib1metadata.xml; the Crossref member
+  record https://api.crossref.org/members/3612; and the CORA RDR Dataverse collection API
+  https://dataverse.csuc.cat/api/dataverses/UAB.
+description: >-
+  Conformance against the Kin Score `education` regulatory regime standards list (scim,
+  lti, oneroster, ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite,
+  crossref). Reward-only: a standard is recorded as conformant for UAB only where an
+  INSTITUTION-OPERATED interface demonstrates it in a location that can be pointed at.
+  Standards reached only through a consortium or vendor platform are listed separately as
+  tenant-operated, because that conformance belongs to the platform's engineering.
+
+  Operator was settled by IP ownership, not hostname. That check confirmed rather than
+  overturned the hostname reading here: ddd, traces, ifmuc, revistes, sso and www all
+  resolve inside 158.109.0.0/16, RIPE netname XIUAB, "Xarxa Informatica de la Universitat
+  Autonoma de Barcelona". The one surface it moved is the CORA research-data repository,
+  which sits on 84.88.27.173 — netname CESCANET, "CSUC Services" — and is therefore a
+  tenant relationship, not a UAB contract.
+
+conforms:
+- standard: oai-pmh
+  name: Open Archives Initiative Protocol for Metadata Harvesting 2.0
+  status: conformant
+  x-operator: institution
+  confidence: high
+  evidence:
+    url: https://ddd.uab.cat/oai2d?verb=Identify
+    status: 200
+    locations:
+    - 'OAI-PMH/Identify/protocolVersion = 2.0'
+    - 'OAI-PMH/Identify/repositoryName = Dipòsit Digital de Documents de la UAB'
+    - 'OAI-PMH/Identify/baseURL = http://ddd.uab.cat/oai2d'
+    - 'OAI-PMH/Identify/adminEmail = ddd.bib@uab.cat'
+    - 'OAI-PMH/Identify/earliestDatestamp = 2006-03-13T16:18:25Z'
+    - 'OAI-PMH/Identify/description/oai-identifier/repositoryIdentifier = ddd.uab.cat'
+    - 'OAI-PMH/Identify/description/friends — https://traces.uab.cat/oai2d, https://ifmuc.uab.cat/oai2d'
+    verbs_exercised:
+      Identify: 200
+      ListSets: 200
+      ListMetadataFormats: 200
+      ListIdentifiers: 200
+      GetRecord: 200
+    metadata_prefixes:
+    - oai_dc
+    - marcxml
+    - edm
+    - oai_openaire
+    sets: 18
+    corroboration:
+      resolved_ip: 158.109.2.47
+      cname: mompou.uab.cat
+      ip_owner: XIUAB — Xarxa Informatica de la Universitat Autonoma de Barcelona (RIPE)
+      sibling_endpoints:
+      - https://traces.uab.cat/oai2d?verb=Identify
+      - https://ifmuc.uab.cat/oai2d?verb=Identify
+      - https://revistes.uab.cat/catJL/oai?verb=Identify
+  note: >-
+    The strongest evidenced conformance in this profile, and the one that makes UAB
+    materially different from most of this cohort: four institution-operated OAI-PMH 2.0
+    endpoints, on UAB's own address space, with UAB admin contacts, all answering real
+    verbs. The oai_openaire prefix additionally evidences OpenAIRE Guidelines compliance
+    and the edm prefix evidences Europeana Data Model export. The repository software is
+    Invenio (CERN); the deployment, the hosts, the sets and the records are UAB's.
+
+- standard: saml
+  name: SAML 2.0
+  status: conformant
+  x-operator: institution
+  confidence: high
+  evidence:
+    url: https://sso.uab.cat/cas/idp/metadata
+    status: 200
+    content_type: text/xml;charset=UTF-8
+    entity: https://sso.uab.cat/cas/idp
+    locations:
+    - 'EntityDescriptor[@entityID="https://sso.uab.cat/cas/idp"]/IDPSSODescriptor'
+    - 'IDPSSODescriptor/@protocolSupportEnumeration contains urn:oasis:names:tc:SAML:2.0:protocol'
+    - 'IDPSSODescriptor/KeyDescriptor[@use="signing"] and [@use="encryption"]'
+    - 'IDPSSODescriptor/SingleSignOnService — HTTP-POST, HTTP-POST-SimpleSign, HTTP-Redirect, SOAP (ECP)'
+    - 'IDPSSODescriptor/SingleLogoutService — HTTP-POST, HTTP-Redirect'
+    archived: identity-federation/uab-sso-cas-saml2-idp-metadata.xml
+    corroboration:
+      resolved_ip: 158.109.121.62
+      ip_owner: XIUAB — Universitat Autonoma de Barcelona (RIPE)
+      software: Apereo CAS (X-Application-Context cas-1)
+      federation_entity: https://www.rediris.es/sir/uabidp
+  note: >-
+    UAB self-publishes a complete SAML 2.0 IdP EntityDescriptor from its own CAS server on
+    its own address space. This is an institution-published machine-readable contract, not
+    a vendor's — which is why it is graded institution rather than federation. The separate
+    SIR entity that carries UAB into eduGAIN is recorded in
+    identity-federation/uab-identity-federation.yml with x-operator federation, because its
+    endpoints run on sir.rediris.es.
+
+- standard: shibboleth
+  name: Shibboleth
+  status: conformant
+  x-operator: institution
+  confidence: moderate
+  evidence:
+    url: https://sso.uab.cat/cas/idp/metadata
+    status: 200
+    locations:
+    - 'IDPSSODescriptor/Extensions/shibmd:Scope[@regexp="false"] = sso.uab.cat'
+    - 'IDPSSODescriptor/@protocolSupportEnumeration contains urn:mace:shibboleth:1.0'
+    - 'IDPSSODescriptor/NameIDFormat = urn:mace:shibboleth:1.0:nameIdentifier'
+    federation:
+      name: SIR — Servicio de Identidad de RedIRIS
+      aggregate: https://www.rediris.es/sir/shib1metadata.xml
+      status: 200
+      entity_present: true
+      entity: https://www.rediris.es/sir/uabidp
+      shibmd_scope: uab.es
+      interfederation: eduGAIN
+  note: >-
+    Confidence is moderate rather than high because the Shibboleth conformance is expressed
+    through the shibmd metadata extension and the mace protocol URN on an Apereo CAS server,
+    rather than by running the Shibboleth IdP software itself. The federated Shibboleth 1.3
+    profile endpoints for UAB live on sir.rediris.es and are RedIRIS-operated.
+
+- standard: crossref
+  name: Crossref
+  status: conformant
+  x-operator: institution
+  confidence: high
+  evidence:
+    url: https://api.crossref.org/members/3612
+    status: 200
+    locations:
+    - 'message.id = 3612'
+    - 'message.primary-name = Universitat Autonoma de Barcelona'
+    - 'message.prefixes = ["10.5565"]'
+    - 'message.location = Bellaterra (Cerdanyola del Valles), Spain'
+    - 'message.counts.total-dois = 23089'
+    member_id: 3612
+    doi_prefix: '10.5565'
+    dois_total: 23089
+  note: >-
+    UAB is a Crossref member in its own name, with its own DOI prefix, and has deposited
+    23,089 DOIs. This is a registry membership — a fact about the institution, recorded per
+    the university pipeline contract. Crossref's own API contract is not saved here.
+
+- standard: datacite
+  name: DataCite
+  status: conformant
+  x-operator: tenant
+  confidence: high
+  evidence:
+    url: https://dataverse.csuc.cat/api/search?q=*&subtree=UAB&type=dataset
+    status: 200
+    locations:
+    - 'data.total_count = 567 datasets in the UAB collection'
+    - 'data.items[].global_id — doi:10.34810/DATA904, doi:10.34810/DATA602, doi:10.34810/DATA1088'
+    datacite_client: gdcc.csuc — "CORA.Repositori de Dades de Recerca"
+    doi_prefix: '10.34810'
+  note: >-
+    UAB's research datasets carry DataCite DOIs, but they are minted under CSUC's DataCite
+    client gdcc.csuc and CSUC's prefix 10.34810, on CSUC infrastructure. The datasets are
+    UAB's; the DataCite registration is the consortium's. Graded tenant so the conformance
+    is not credited to UAB's engineering — and recorded rather than deleted, because the
+    membership in the consortium repository is a real institutional fact.
+
+not_evidenced:
+- standard: scim
+  reason: No SCIM 2.0 endpoint or schema was found on any UAB host; provisioning is internal.
+- standard: lti
+  reason: >-
+    UAB's virtual campus at cv.uab.cat (158.109.121.150, XIUAB) redirects unauthenticated
+    clients straight into the CAS login at sso.uab.cat, and /mod/lti/auth.php returns a
+    Tomcat 404 rather than a Moodle handler, so the platform is UAB's own Java application
+    rather than an off-the-shelf LMS. No public LTI tool configuration, dynamic-registration
+    endpoint or platform JWKS was reachable.
+- standard: oneroster
+  reason: Not applicable in practice to a Spanish higher-education institution; no endpoint found.
+- standard: ed-fi
+  reason: US K-12 standard; no endpoint found and none expected.
+- standard: caliper
+  reason: No Caliper Analytics endpoint or event store was found on any public UAB host.
+- standard: qti
+  reason: No QTI item bank or assessment interchange endpoint was found on any public UAB host.
+- standard: orcid
+  reason: >-
+    UAB records and displays ORCID iDs in its repository and research portal, but no ORCID
+    member API client, no ORCID-integrated authorisation endpoint and no UAB entry in a
+    consortium member list could be evidenced by probe. Deliberately left unrecorded rather
+    than asserted — this rubric is reward-only.
